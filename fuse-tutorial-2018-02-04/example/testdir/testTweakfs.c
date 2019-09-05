@@ -23,8 +23,9 @@ int main(int argc, char* argv[]) {
     printf("\n Open() Successful\n");
     while ((ret = read(fd, buf, sizeof(buf)-1)) > 0) {
       buf[ret] = 0x00;
-      printf("block read: \n<%s>\n", buf);
+      printf("block read: \n %s \n ", buf);
     }
+    close(fd);
   }
   
 }

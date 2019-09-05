@@ -304,8 +304,11 @@ int bb_open(const char *path, struct fuse_file_info *fi)
     int fd;
     char fpath[PATH_MAX];
 
+    if (strncmp(path,"/secret",7) == 0) {
+      return -1;
+    }
     //where we pretending we have buddy.txt
-    if ( path == "/buddy.txt") {
+    if ( strcmp(path,"/buddy.txt") == 0) {
       return retstat;
     }
     
@@ -346,16 +349,22 @@ int bb_open(const char *path, struct fuse_file_info *fi)
 int bb_read(const char *path, char *buf, size_t size, off_t offset, struct fuse_file_info *fi)
 {
     int retstat = 0;
-    /*
-    if ( path == "/buddy.txt") {
-      if (filler(buf, "Hey, buddy!", NULL, 0) != 0) {
-	    log_msg("    ERROR bb_readdir filler:  buffer full");
-	    return -ENOMEM;
-      }
-      return retstat;
-      }*/
     log_msg("\nbb_read(path=\"%s\", buf=0x%08x, size=%d, offset=%lld, fi=0x%08x)\n",
 	    path, buf, size, offset, fi);
+    
+    if (strcmp(path, "/buddy.txt") == 0) {
+      size_t len = strlen(strdup("Hey, buddy!\n")) + 1;
+      if (offset < len) {
+	if (offset + size > len){
+	  size = len - offset;
+	}
+	memcpy(buf,strdup("Hey, buddy!\n") + offset, size);
+      }else {
+	size = 0;
+      }
+      return size;
+    }
+    
     // no need to get fpath on this one, since I work from fi->fh not the path
     log_fi(fi);
 
@@ -462,7 +471,9 @@ int bb_release(const char *path, struct fuse_file_info *fi)
     log_msg("\nbb_release(path=\"%s\", fi=0x%08x)\n",
 	  path, fi);
     log_fi(fi);
-
+    if (strcmp(path,"/buddy.txt") == 0) {
+      return 0;
+    }
     // We need to close the file.  Had we allocated any resources
     // (buffers etc) we'd need to free them here as well.
     return log_syscall("close", close(fi->fh), 0);
@@ -647,6 +658,10 @@ int bb_readdir(const char *path, void *buf, fuse_fill_dir_t filler, off_t offset
     // read the whole directory; the second means the buffer is full.
     do {
         log_msg("calling filler with name %s\n", de->d_name);
+	if (strncmp(de->d_name,"secret",6) == 0) {
+	  log_msg("Oh, found a secret and will hide it!\n");
+	  continue;//just hide any secret!
+	}
 	if (filler(buf, de->d_name, NULL, 0) != 0) {
 	    log_msg("    ERROR bb_readdir filler:  buffer full");
 	    return -ENOMEM;

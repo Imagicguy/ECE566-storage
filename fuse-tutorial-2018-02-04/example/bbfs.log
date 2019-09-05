@@ -11,16 +11,16 @@ bb_init()
     max_background = 0
     congestion_threshold = 0
     context:
-    fuse = c85a17f0
+    fuse = 0005b7f0
     uid = 0
     gid = 0
     pid = 0
-    private_data = c85a0260
-    logfile = c85a1290
+    private_data = 0005a260
+    logfile = 0005b290
     rootdir = /home/hw210/566ece/fuse-tutorial-2018-02-04/example/testdir
     umask = 00000
 
-bb_getattr(path="/", statbuf=0x5e019c00)
+bb_getattr(path="/", statbuf=0x4da79c00)
     bb_fullpath:  rootdir = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/testdir", path = "/", fpath = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/testdir/"
     lstat returned 0
     si:
@@ -31,14 +31,14 @@ bb_getattr(path="/", statbuf=0x5e019c00)
     st_uid = 1187498
     st_gid = 1002
     st_rdev = 0
-    st_size = 87
+    st_size = 105
     st_blksize = 4096
     st_blocks = 0
-    st_atime = 0x5d6fd2d7
-    st_mtime = 0x5d6fd2cf
-    st_ctime = 0x5d6fd2cf
+    st_atime = 0x5d709ed6
+    st_mtime = 0x5d709ed4
+    st_ctime = 0x5d709ed4
 
-bb_getattr(path="/", statbuf=0x5e81ac00)
+bb_getattr(path="/", statbuf=0x4e27ac00)
     bb_fullpath:  rootdir = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/testdir", path = "/", fpath = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/testdir/"
     lstat returned 0
     si:
@@ -49,29 +49,29 @@ bb_getattr(path="/", statbuf=0x5e81ac00)
     st_uid = 1187498
     st_gid = 1002
     st_rdev = 0
-    st_size = 87
+    st_size = 105
     st_blksize = 4096
     st_blocks = 0
-    st_atime = 0x5d6fd2d7
-    st_mtime = 0x5d6fd2cf
-    st_ctime = 0x5d6fd2cf
+    st_atime = 0x5d709ed6
+    st_mtime = 0x5d709ed4
+    st_ctime = 0x5d709ed4
 
 bb_access(path="/", mask=01)
     bb_fullpath:  rootdir = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/testdir", path = "/", fpath = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/testdir/"
 
-bb_opendir(path="/", fi=0x5e81ac20)
+bb_opendir(path="/", fi=0x4e27ac20)
     bb_fullpath:  rootdir = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/testdir", path = "/", fpath = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/testdir/"
-    opendir returned 0x0x7fe958002010
+    opendir returned 0x0x7f8748002010
     fi:
     flags = 0x00018800
     fh_old = 0x00000000
     writepage = 0
     direct_io = 0
     keep_cache = 0
-    fh = 0x00007fe958002010
+    fh = 0x00007f8748002010
     lock_owner = 0x0000000000000000
 
-bb_getattr(path="/", statbuf=0x5e019c00)
+bb_getattr(path="/", statbuf=0x4da79c00)
     bb_fullpath:  rootdir = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/testdir", path = "/", fpath = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/testdir/"
     lstat returned 0
     si:
@@ -82,32 +82,34 @@ bb_getattr(path="/", statbuf=0x5e019c00)
     st_uid = 1187498
     st_gid = 1002
     st_rdev = 0
-    st_size = 87
+    st_size = 105
     st_blksize = 4096
     st_blocks = 0
-    st_atime = 0x5d6fd2d7
-    st_mtime = 0x5d6fd2cf
-    st_ctime = 0x5d6fd2cf
+    st_atime = 0x5d709ed6
+    st_mtime = 0x5d709ed4
+    st_ctime = 0x5d709ed4
 
-bb_readdir(path="/", buf=0x58001f90, filler=0x5f037d00, offset=0, fi=0x5e81ac20)
-    readdir returned 0x0x7fe958002040
+bb_readdir(path="/", buf=0x48001f90, filler=0x4ea97d00, offset=0, fi=0x4e27ac20)
+    readdir returned 0x0x7f8748002040
 calling filler with name .
 calling filler with name ..
 calling filler with name newFile.txt
 calling filler with name testTweakfs.c~
 calling filler with name testTweakfs.c
 calling filler with name testTweakfs
+calling filler with name secret.txt
+Oh, found a secret and will hide it!
 calling filler with name buddy.txt
     fi:
     flags = 0x00000000
-    fh_old = 0x7fe958002010
+    fh_old = 0x7f8748002010
     writepage = 0
     direct_io = 0
     keep_cache = 0
-    fh = 0x00007fe958002010
+    fh = 0x00007f8748002010
     lock_owner = 0x0000000000000000
 
-bb_getattr(path="/newFile.txt", statbuf=0x5e019c30)
+bb_getattr(path="/newFile.txt", statbuf=0x4da79c30)
     bb_fullpath:  rootdir = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/testdir", path = "/newFile.txt", fpath = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/testdir/newFile.txt"
     lstat returned 0
     si:
@@ -121,11 +123,11 @@ bb_getattr(path="/newFile.txt", statbuf=0x5e019c30)
     st_size = 23
     st_blksize = 4096
     st_blocks = 8
-    st_atime = 0x5d6f38b9
+    st_atime = 0x5d70900f
     st_mtime = 0x5d6f2c41
     st_ctime = 0x5d6f2c41
 
-bb_getattr(path="/testTweakfs.c~", statbuf=0x5e81ac30)
+bb_getattr(path="/testTweakfs.c~", statbuf=0x4e27ac30)
     bb_fullpath:  rootdir = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/testdir", path = "/testTweakfs.c~", fpath = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/testdir/testTweakfs.c~"
     lstat returned 0
     si:
@@ -136,14 +138,14 @@ bb_getattr(path="/testTweakfs.c~", statbuf=0x5e81ac30)
     st_uid = 1187498
     st_gid = 1002
     st_rdev = 0
-    st_size = 530
+    st_size = 560
     st_blksize = 4096
     st_blocks = 8
-    st_atime = 0x5d6fcfc0
-    st_mtime = 0x5d6fcfad
-    st_ctime = 0x5d6fd2cd
+    st_atime = 0x5d709813
+    st_mtime = 0x5d709680
+    st_ctime = 0x5d70982c
 
-bb_getattr(path="/testTweakfs.c", statbuf=0x5e019c30)
+bb_getattr(path="/testTweakfs.c", statbuf=0x4da79c30)
     bb_fullpath:  rootdir = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/testdir", path = "/testTweakfs.c", fpath = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/testdir/testTweakfs.c"
     lstat returned 0
     si:
@@ -154,14 +156,14 @@ bb_getattr(path="/testTweakfs.c", statbuf=0x5e019c30)
     st_uid = 1187498
     st_gid = 1002
     st_rdev = 0
-    st_size = 559
+    st_size = 575
     st_blksize = 4096
     st_blocks = 8
-    st_atime = 0x5d6fd2cf
-    st_mtime = 0x5d6fd2cd
-    st_ctime = 0x5d6fd2cd
+    st_atime = 0x5d709836
+    st_mtime = 0x5d70982c
+    st_ctime = 0x5d70982c
 
-bb_getattr(path="/testTweakfs", statbuf=0x5e81ac30)
+bb_getattr(path="/testTweakfs", statbuf=0x4e27ac30)
     bb_fullpath:  rootdir = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/testdir", path = "/testTweakfs", fpath = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/testdir/testTweakfs"
     lstat returned 0
     si:
@@ -172,37 +174,37 @@ bb_getattr(path="/testTweakfs", statbuf=0x5e81ac30)
     st_uid = 1187498
     st_gid = 1002
     st_rdev = 0
-    st_size = 8584
+    st_size = 8632
     st_blksize = 4096
     st_blocks = 24
-    st_atime = 0x5d6fd2ed
-    st_mtime = 0x5d6fd2cf
-    st_ctime = 0x5d6fd2cf
+    st_atime = 0x5d70983a
+    st_mtime = 0x5d709836
+    st_ctime = 0x5d709836
 comes in buddy condition jump!
 
-bb_releasedir(path="/", fi=0x5e019c30)
+bb_releasedir(path="/", fi=0x4da79c30)
     fi:
     flags = 0x00000000
-    fh_old = 0x7fe958002010
+    fh_old = 0x7f8748002010
     writepage = 0
     direct_io = 0
     keep_cache = 0
-    fh = 0x00007fe958002010
+    fh = 0x00007f8748002010
     lock_owner = 0x0000000000000000
 
-bb_opendir(path="/", fi=0x5e81ac20)
+bb_opendir(path="/", fi=0x4e27ac20)
     bb_fullpath:  rootdir = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/testdir", path = "/", fpath = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/testdir/"
-    opendir returned 0x0x7fe95800a6a0
+    opendir returned 0x0x7f874800a6a0
     fi:
     flags = 0x00018800
     fh_old = 0x00000000
     writepage = 0
     direct_io = 0
     keep_cache = 0
-    fh = 0x00007fe95800a6a0
+    fh = 0x00007f874800a6a0
     lock_owner = 0x0000000000000000
 
-bb_getattr(path="/", statbuf=0x5e019c00)
+bb_getattr(path="/", statbuf=0x4da79c00)
     bb_fullpath:  rootdir = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/testdir", path = "/", fpath = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/testdir/"
     lstat returned 0
     si:
@@ -213,55 +215,174 @@ bb_getattr(path="/", statbuf=0x5e019c00)
     st_uid = 1187498
     st_gid = 1002
     st_rdev = 0
-    st_size = 87
+    st_size = 105
     st_blksize = 4096
     st_blocks = 0
-    st_atime = 0x5d6fd2d7
-    st_mtime = 0x5d6fd2cf
-    st_ctime = 0x5d6fd2cf
+    st_atime = 0x5d709ed6
+    st_mtime = 0x5d709ed4
+    st_ctime = 0x5d709ed4
 
-bb_readdir(path="/", buf=0x580020a0, filler=0x5f037d00, offset=0, fi=0x5e81ac20)
-    readdir returned 0x0x7fe95800a6d0
+bb_readdir(path="/", buf=0x480020a0, filler=0x4ea97d00, offset=0, fi=0x4e27ac20)
+    readdir returned 0x0x7f874800a6d0
 calling filler with name .
 calling filler with name ..
 calling filler with name newFile.txt
 calling filler with name testTweakfs.c~
 calling filler with name testTweakfs.c
 calling filler with name testTweakfs
+calling filler with name secret.txt
+Oh, found a secret and will hide it!
 calling filler with name buddy.txt
     fi:
     flags = 0x00000000
-    fh_old = 0x7fe95800a6a0
+    fh_old = 0x7f874800a6a0
     writepage = 0
     direct_io = 0
     keep_cache = 0
-    fh = 0x00007fe95800a6a0
+    fh = 0x00007f874800a6a0
     lock_owner = 0x0000000000000000
 
-bb_releasedir(path="/", fi=0x5e81ac30)
-    fi:
-    flags = 0x00000000
-    fh_old = 0x7fe95800a6a0
-    writepage = 0
-    direct_io = 0
-    keep_cache = 0
-    fh = 0x00007fe95800a6a0
-    lock_owner = 0x0000000000000000
+bb_getattr(path="/newFile.txt", statbuf=0x4da79c30)
+    bb_fullpath:  rootdir = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/testdir", path = "/newFile.txt", fpath = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/testdir/newFile.txt"
+    lstat returned 0
+    si:
+    st_dev = 64770
+    st_ino = 12583123
+    st_mode = 0100664
+    st_nlink = 1
+    st_uid = 1187498
+    st_gid = 1002
+    st_rdev = 0
+    st_size = 23
+    st_blksize = 4096
+    st_blocks = 8
+    st_atime = 0x5d70900f
+    st_mtime = 0x5d6f2c41
+    st_ctime = 0x5d6f2c41
+
+bb_getxattr(path = "/newFile.txt", name = "security.selinux", value = 0x48001df0, size = 255)
+    bb_fullpath:  rootdir = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/testdir", path = "/newFile.txt", fpath = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/testdir/newFile.txt"
+    lgetxattr returned -1
+    ERROR lgetxattr: No data available
+
+bb_getxattr(path = "/newFile.txt", name = "system.posix_acl_access", value = 0x00000000, size = 0)
+    bb_fullpath:  rootdir = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/testdir", path = "/newFile.txt", fpath = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/testdir/newFile.txt"
+    lgetxattr returned -1
+    ERROR lgetxattr: No data available
+
+bb_getattr(path="/testTweakfs.c~", statbuf=0x4e27ac30)
+    bb_fullpath:  rootdir = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/testdir", path = "/testTweakfs.c~", fpath = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/testdir/testTweakfs.c~"
+    lstat returned 0
+    si:
+    st_dev = 64770
+    st_ino = 12583124
+    st_mode = 0100664
+    st_nlink = 1
+    st_uid = 1187498
+    st_gid = 1002
+    st_rdev = 0
+    st_size = 560
+    st_blksize = 4096
+    st_blocks = 8
+    st_atime = 0x5d709813
+    st_mtime = 0x5d709680
+    st_ctime = 0x5d70982c
+
+bb_getxattr(path = "/testTweakfs.c~", name = "security.selinux", value = 0x40000bf0, size = 255)
+    bb_fullpath:  rootdir = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/testdir", path = "/testTweakfs.c~", fpath = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/testdir/testTweakfs.c~"
+    lgetxattr returned -1
+    ERROR lgetxattr: No data available
+
+bb_getxattr(path = "/testTweakfs.c~", name = "system.posix_acl_access", value = 0x00000000, size = 0)
+    bb_fullpath:  rootdir = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/testdir", path = "/testTweakfs.c~", fpath = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/testdir/testTweakfs.c~"
+    lgetxattr returned -1
+    ERROR lgetxattr: No data available
+
+bb_getattr(path="/testTweakfs.c", statbuf=0x4da79c30)
+    bb_fullpath:  rootdir = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/testdir", path = "/testTweakfs.c", fpath = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/testdir/testTweakfs.c"
+    lstat returned 0
+    si:
+    st_dev = 64770
+    st_ino = 12583125
+    st_mode = 0100664
+    st_nlink = 1
+    st_uid = 1187498
+    st_gid = 1002
+    st_rdev = 0
+    st_size = 575
+    st_blksize = 4096
+    st_blocks = 8
+    st_atime = 0x5d709836
+    st_mtime = 0x5d70982c
+    st_ctime = 0x5d70982c
+
+bb_getxattr(path = "/testTweakfs.c", name = "security.selinux", value = 0x48001df0, size = 255)
+    bb_fullpath:  rootdir = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/testdir", path = "/testTweakfs.c", fpath = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/testdir/testTweakfs.c"
+    lgetxattr returned -1
+    ERROR lgetxattr: No data available
+
+bb_getxattr(path = "/testTweakfs.c", name = "system.posix_acl_access", value = 0x00000000, size = 0)
+    bb_fullpath:  rootdir = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/testdir", path = "/testTweakfs.c", fpath = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/testdir/testTweakfs.c"
+    lgetxattr returned -1
+    ERROR lgetxattr: No data available
+
+bb_getattr(path="/testTweakfs", statbuf=0x4e27ac30)
+    bb_fullpath:  rootdir = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/testdir", path = "/testTweakfs", fpath = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/testdir/testTweakfs"
+    lstat returned 0
+    si:
+    st_dev = 64770
+    st_ino = 12583121
+    st_mode = 0100775
+    st_nlink = 1
+    st_uid = 1187498
+    st_gid = 1002
+    st_rdev = 0
+    st_size = 8632
+    st_blksize = 4096
+    st_blocks = 24
+    st_atime = 0x5d70983a
+    st_mtime = 0x5d709836
+    st_ctime = 0x5d709836
+
+bb_getxattr(path = "/testTweakfs", name = "security.selinux", value = 0x40000bf0, size = 255)
+    bb_fullpath:  rootdir = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/testdir", path = "/testTweakfs", fpath = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/testdir/testTweakfs"
+    lgetxattr returned -1
+    ERROR lgetxattr: No data available
+
+bb_getxattr(path = "/testTweakfs", name = "system.posix_acl_access", value = 0x00000000, size = 0)
+    bb_fullpath:  rootdir = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/testdir", path = "/testTweakfs", fpath = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/testdir/testTweakfs"
+    lgetxattr returned -1
+    ERROR lgetxattr: No data available
 comes in buddy condition jump!
 
-bb_opendir(path="/", fi=0x5e81ac20)
+bb_getxattr(path = "/buddy.txt", name = "security.selinux", value = 0x48001df0, size = 255)
+    bb_fullpath:  rootdir = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/testdir", path = "/buddy.txt", fpath = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/testdir/buddy.txt"
+    lgetxattr returned -1
+    ERROR lgetxattr: No such file or directory
+
+bb_releasedir(path="/", fi=0x4e27ac30)
+    fi:
+    flags = 0x00000000
+    fh_old = 0x7f874800a6a0
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x00007f874800a6a0
+    lock_owner = 0x0000000000000000
+
+bb_opendir(path="/", fi=0x4da79c20)
     bb_fullpath:  rootdir = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/testdir", path = "/", fpath = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/testdir/"
-    opendir returned 0x0x7fe95800a6a0
+    opendir returned 0x0x7f8740001280
     fi:
     flags = 0x00018800
     fh_old = 0x00000000
     writepage = 0
     direct_io = 0
     keep_cache = 0
-    fh = 0x00007fe95800a6a0
+    fh = 0x00007f8740001280
     lock_owner = 0x0000000000000000
 
-bb_getattr(path="/", statbuf=0x5e019c00)
+bb_getattr(path="/", statbuf=0x4e27ac00)
     bb_fullpath:  rootdir = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/testdir", path = "/", fpath = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/testdir/"
     lstat returned 0
     si:
@@ -272,42 +393,129 @@ bb_getattr(path="/", statbuf=0x5e019c00)
     st_uid = 1187498
     st_gid = 1002
     st_rdev = 0
-    st_size = 87
+    st_size = 105
     st_blksize = 4096
     st_blocks = 0
-    st_atime = 0x5d6fd2d7
-    st_mtime = 0x5d6fd2cf
-    st_ctime = 0x5d6fd2cf
+    st_atime = 0x5d709ed6
+    st_mtime = 0x5d709ed4
+    st_ctime = 0x5d709ed4
 
-bb_readdir(path="/", buf=0x58002530, filler=0x5f037d00, offset=0, fi=0x5d818c20)
-    readdir returned 0x0x7fe95800a6d0
+bb_readdir(path="/", buf=0x40001200, filler=0x4ea97d00, offset=0, fi=0x4da79c20)
+    readdir returned 0x0x7f87400012b0
 calling filler with name .
 calling filler with name ..
 calling filler with name newFile.txt
 calling filler with name testTweakfs.c~
 calling filler with name testTweakfs.c
 calling filler with name testTweakfs
+calling filler with name secret.txt
+Oh, found a secret and will hide it!
 calling filler with name buddy.txt
     fi:
     flags = 0x00000000
-    fh_old = 0x7fe95800a6a0
+    fh_old = 0x7f8740001280
     writepage = 0
     direct_io = 0
     keep_cache = 0
-    fh = 0x00007fe95800a6a0
+    fh = 0x00007f8740001280
     lock_owner = 0x0000000000000000
 
-bb_releasedir(path="/", fi=0x5e019c30)
+bb_getattr(path="/newFile.txt", statbuf=0x4e27ac30)
+    bb_fullpath:  rootdir = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/testdir", path = "/newFile.txt", fpath = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/testdir/newFile.txt"
+    lstat returned 0
+    si:
+    st_dev = 64770
+    st_ino = 12583123
+    st_mode = 0100664
+    st_nlink = 1
+    st_uid = 1187498
+    st_gid = 1002
+    st_rdev = 0
+    st_size = 23
+    st_blksize = 4096
+    st_blocks = 8
+    st_atime = 0x5d70900f
+    st_mtime = 0x5d6f2c41
+    st_ctime = 0x5d6f2c41
+
+bb_getattr(path="/testTweakfs.c~", statbuf=0x4da79c30)
+    bb_fullpath:  rootdir = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/testdir", path = "/testTweakfs.c~", fpath = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/testdir/testTweakfs.c~"
+    lstat returned 0
+    si:
+    st_dev = 64770
+    st_ino = 12583124
+    st_mode = 0100664
+    st_nlink = 1
+    st_uid = 1187498
+    st_gid = 1002
+    st_rdev = 0
+    st_size = 560
+    st_blksize = 4096
+    st_blocks = 8
+    st_atime = 0x5d709813
+    st_mtime = 0x5d709680
+    st_ctime = 0x5d70982c
+
+bb_getattr(path="/testTweakfs.c", statbuf=0x4e27ac30)
+    bb_fullpath:  rootdir = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/testdir", path = "/testTweakfs.c", fpath = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/testdir/testTweakfs.c"
+    lstat returned 0
+    si:
+    st_dev = 64770
+    st_ino = 12583125
+    st_mode = 0100664
+    st_nlink = 1
+    st_uid = 1187498
+    st_gid = 1002
+    st_rdev = 0
+    st_size = 575
+    st_blksize = 4096
+    st_blocks = 8
+    st_atime = 0x5d709836
+    st_mtime = 0x5d70982c
+    st_ctime = 0x5d70982c
+
+bb_getattr(path="/testTweakfs", statbuf=0x4da79c30)
+    bb_fullpath:  rootdir = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/testdir", path = "/testTweakfs", fpath = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/testdir/testTweakfs"
+    lstat returned 0
+    si:
+    st_dev = 64770
+    st_ino = 12583121
+    st_mode = 0100775
+    st_nlink = 1
+    st_uid = 1187498
+    st_gid = 1002
+    st_rdev = 0
+    st_size = 8632
+    st_blksize = 4096
+    st_blocks = 24
+    st_atime = 0x5d70983a
+    st_mtime = 0x5d709836
+    st_ctime = 0x5d709836
+comes in buddy condition jump!
+
+bb_releasedir(path="/", fi=0x4e27ac30)
     fi:
     flags = 0x00000000
-    fh_old = 0x7fe95800a6a0
+    fh_old = 0x7f8740001280
     writepage = 0
     direct_io = 0
     keep_cache = 0
-    fh = 0x00007fe95800a6a0
+    fh = 0x00007f8740001280
     lock_owner = 0x0000000000000000
 
-bb_getattr(path="/", statbuf=0x5d818c00)
+bb_opendir(path="/", fi=0x4da79c20)
+    bb_fullpath:  rootdir = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/testdir", path = "/", fpath = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/testdir/"
+    opendir returned 0x0x7f8740001300
+    fi:
+    flags = 0x00018800
+    fh_old = 0x00000000
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x00007f8740001300
+    lock_owner = 0x0000000000000000
+
+bb_getattr(path="/", statbuf=0x4e27ac00)
     bb_fullpath:  rootdir = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/testdir", path = "/", fpath = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/testdir/"
     lstat returned 0
     si:
@@ -318,42 +526,258 @@ bb_getattr(path="/", statbuf=0x5d818c00)
     st_uid = 1187498
     st_gid = 1002
     st_rdev = 0
-    st_size = 87
+    st_size = 105
     st_blksize = 4096
     st_blocks = 0
-    st_atime = 0x5d6fd2d7
-    st_mtime = 0x5d6fd2cf
-    st_ctime = 0x5d6fd2cf
+    st_atime = 0x5d709ed6
+    st_mtime = 0x5d709ed4
+    st_ctime = 0x5d709ed4
+
+bb_readdir(path="/", buf=0x40001280, filler=0x4ea97d00, offset=0, fi=0x4da79c20)
+    readdir returned 0x0x7f8740001330
+calling filler with name .
+calling filler with name ..
+calling filler with name newFile.txt
+calling filler with name testTweakfs.c~
+calling filler with name testTweakfs.c
+calling filler with name testTweakfs
+calling filler with name secret.txt
+Oh, found a secret and will hide it!
+calling filler with name buddy.txt
+    fi:
+    flags = 0x00000000
+    fh_old = 0x7f8740001300
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x00007f8740001300
+    lock_owner = 0x0000000000000000
+
+bb_releasedir(path="/", fi=0x4da79c30)
+    fi:
+    flags = 0x00000000
+    fh_old = 0x7f8740001300
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x00007f8740001300
+    lock_owner = 0x0000000000000000
+comes in buddy condition jump!
+
+bb_opendir(path="/", fi=0x4da79c20)
+    bb_fullpath:  rootdir = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/testdir", path = "/", fpath = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/testdir/"
+    opendir returned 0x0x7f8740009750
+    fi:
+    flags = 0x00018800
+    fh_old = 0x00000000
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x00007f8740009750
+    lock_owner = 0x0000000000000000
+
+bb_getattr(path="/", statbuf=0x4e27ac00)
+    bb_fullpath:  rootdir = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/testdir", path = "/", fpath = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/testdir/"
+    lstat returned 0
+    si:
+    st_dev = 64770
+    st_ino = 12583116
+    st_mode = 040775
+    st_nlink = 2
+    st_uid = 1187498
+    st_gid = 1002
+    st_rdev = 0
+    st_size = 105
+    st_blksize = 4096
+    st_blocks = 0
+    st_atime = 0x5d709ed6
+    st_mtime = 0x5d709ed4
+    st_ctime = 0x5d709ed4
+
+bb_readdir(path="/", buf=0x40001300, filler=0x4ea97d00, offset=0, fi=0x4da79c20)
+    readdir returned 0x0x7f8740009780
+calling filler with name .
+calling filler with name ..
+calling filler with name newFile.txt
+calling filler with name testTweakfs.c~
+calling filler with name testTweakfs.c
+calling filler with name testTweakfs
+calling filler with name secret.txt
+Oh, found a secret and will hide it!
+calling filler with name buddy.txt
+    fi:
+    flags = 0x00000000
+    fh_old = 0x7f8740009750
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x00007f8740009750
+    lock_owner = 0x0000000000000000
+
+bb_releasedir(path="/", fi=0x4da79c30)
+    fi:
+    flags = 0x00000000
+    fh_old = 0x7f8740009750
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x00007f8740009750
+    lock_owner = 0x0000000000000000
+
+bb_getattr(path="/", statbuf=0x4e27ac00)
+    bb_fullpath:  rootdir = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/testdir", path = "/", fpath = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/testdir/"
+    lstat returned 0
+    si:
+    st_dev = 64770
+    st_ino = 12583116
+    st_mode = 040775
+    st_nlink = 2
+    st_uid = 1187498
+    st_gid = 1002
+    st_rdev = 0
+    st_size = 105
+    st_blksize = 4096
+    st_blocks = 0
+    st_atime = 0x5d709ed6
+    st_mtime = 0x5d709ed4
+    st_ctime = 0x5d709ed4
 you come to bb_open!
 path is: /buddy.txt
 
-bb_open(path"/buddy.txt", fi=0x5e81ace0)
-    bb_fullpath:  rootdir = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/testdir", path = "/buddy.txt", fpath = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/testdir/buddy.txt"
-    open returned -1
-    ERROR open: No such file or directory
-    ERROR open: No such file or directory
+bb_read(path="/buddy.txt", buf=0x48002690, size=4096, offset=0, fi=0x4e27ace0)
+
+bb_fgetattr(path="/buddy.txt", statbuf=0x4da79c00, fi=0x4da79ce0)
+    fi:
+    flags = 0x00000000
+    fh_old = 0x00000000
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x0000000000000000
+    lock_owner = 0x0000000000000000
+    si:
+    st_dev = 6
+    st_ino = 6
+    st_mode = 020666
+    st_nlink = 1
+    st_uid = 0
+    st_gid = 0
+    st_rdev = 259
+    st_size = 0
+    st_blksize = 4096
+    st_blocks = 0
+    st_atime = 0x5d6f1724
+    st_mtime = 0x5d6f1724
+    st_ctime = 0x5d6f1724
+
+bb_release(path="/buddy.txt", fi=0x4e27ace0)
     fi:
     flags = 0x00008000
     fh_old = 0x00000000
     writepage = 0
     direct_io = 0
     keep_cache = 0
-    fh = 0xfffffffffffffffe
+    fh = 0x0000000000000000
     lock_owner = 0x0000000000000000
 
-bb_opendir(path="/", fi=0x5e019c20)
+bb_getattr(path="/t", statbuf=0x4da79c30)
+    bb_fullpath:  rootdir = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/testdir", path = "/t", fpath = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/testdir/t"
+    lstat returned -1
+    ERROR lstat: No such file or directory
+    si:
+    st_dev = 0
+    st_ino = 0
+    st_mode = 00
+    st_nlink = 0
+    st_uid = 0
+    st_gid = 0
+    st_rdev = 0
+    st_size = 0
+    st_blksize = 0
+    st_blocks = 0
+    st_atime = 0x00000000
+    st_mtime = 0x00000000
+    st_ctime = 0x00000000
+
+bb_getattr(path="/secret.jpg", statbuf=0x4e27ac30)
+    bb_fullpath:  rootdir = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/testdir", path = "/secret.jpg", fpath = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/testdir/secret.jpg"
+    lstat returned -1
+    ERROR lstat: No such file or directory
+    si:
+    st_dev = 0
+    st_ino = 0
+    st_mode = 00
+    st_nlink = 0
+    st_uid = 0
+    st_gid = 0
+    st_rdev = 0
+    st_size = 0
+    st_blksize = 0
+    st_blocks = 0
+    st_atime = 0x00000000
+    st_mtime = 0x00000000
+    st_ctime = 0x00000000
+
+bb_mknod(path="/secret.jpg", mode=0100664, dev=0)
+    bb_fullpath:  rootdir = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/testdir", path = "/secret.jpg", fpath = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/testdir/secret.jpg"
+    open returned 5
+    close returned 0
+
+bb_getattr(path="/secret.jpg", statbuf=0x4e27ac30)
+    bb_fullpath:  rootdir = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/testdir", path = "/secret.jpg", fpath = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/testdir/secret.jpg"
+    lstat returned 0
+    si:
+    st_dev = 64770
+    st_ino = 12583704
+    st_mode = 0100664
+    st_nlink = 1
+    st_uid = 1187498
+    st_gid = 1002
+    st_rdev = 0
+    st_size = 0
+    st_blksize = 4096
+    st_blocks = 0
+    st_atime = 0x5d70a061
+    st_mtime = 0x5d70a061
+    st_ctime = 0x5d70a061
+you come to bb_open!
+path is: /secret.jpg
+
+bb_utime(path="/secret.jpg", ubuf=0x4e27aaa0)
+    bb_fullpath:  rootdir = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/testdir", path = "/secret.jpg", fpath = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/testdir/secret.jpg"
+    utime returned 0
+
+bb_getattr(path="/secret.jpg", statbuf=0x4e27ab60)
+    bb_fullpath:  rootdir = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/testdir", path = "/secret.jpg", fpath = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/testdir/secret.jpg"
+    lstat returned 0
+    si:
+    st_dev = 64770
+    st_ino = 12583704
+    st_mode = 0100664
+    st_nlink = 1
+    st_uid = 1187498
+    st_gid = 1002
+    st_rdev = 0
+    st_size = 0
+    st_blksize = 4096
+    st_blocks = 0
+    st_atime = 0x5d70a061
+    st_mtime = 0x5d70a061
+    st_ctime = 0x5d70a061
+
+bb_opendir(path="/", fi=0x4da79c20)
     bb_fullpath:  rootdir = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/testdir", path = "/", fpath = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/testdir/"
-    opendir returned 0x0x7fe9500012d0
+    opendir returned 0x0x7f8740009750
     fi:
     flags = 0x00018800
     fh_old = 0x00000000
     writepage = 0
     direct_io = 0
     keep_cache = 0
-    fh = 0x00007fe9500012d0
+    fh = 0x00007f8740009750
     lock_owner = 0x0000000000000000
 
-bb_getattr(path="/", statbuf=0x5d818c00)
+bb_getattr(path="/", statbuf=0x4e27ac00)
     bb_fullpath:  rootdir = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/testdir", path = "/", fpath = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/testdir/"
     lstat returned 0
     si:
@@ -364,32 +788,36 @@ bb_getattr(path="/", statbuf=0x5d818c00)
     st_uid = 1187498
     st_gid = 1002
     st_rdev = 0
-    st_size = 87
+    st_size = 123
     st_blksize = 4096
     st_blocks = 0
-    st_atime = 0x5d6fd2d7
-    st_mtime = 0x5d6fd2cf
-    st_ctime = 0x5d6fd2cf
+    st_atime = 0x5d709ed6
+    st_mtime = 0x5d70a061
+    st_ctime = 0x5d70a061
 
-bb_readdir(path="/", buf=0x50001250, filler=0x5f037d00, offset=0, fi=0x5e81ac20)
-    readdir returned 0x0x7fe950001300
+bb_readdir(path="/", buf=0x40001380, filler=0x4ea97d00, offset=0, fi=0x4da79c20)
+    readdir returned 0x0x7f8740009780
 calling filler with name .
 calling filler with name ..
 calling filler with name newFile.txt
 calling filler with name testTweakfs.c~
 calling filler with name testTweakfs.c
 calling filler with name testTweakfs
+calling filler with name secret.txt
+Oh, found a secret and will hide it!
+calling filler with name secret.jpg
+Oh, found a secret and will hide it!
 calling filler with name buddy.txt
     fi:
     flags = 0x00000000
-    fh_old = 0x7fe9500012d0
+    fh_old = 0x7f8740009750
     writepage = 0
     direct_io = 0
     keep_cache = 0
-    fh = 0x00007fe9500012d0
+    fh = 0x00007f8740009750
     lock_owner = 0x0000000000000000
 
-bb_getattr(path="/newFile.txt", statbuf=0x5e019c30)
+bb_getattr(path="/newFile.txt", statbuf=0x4e27ac30)
     bb_fullpath:  rootdir = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/testdir", path = "/newFile.txt", fpath = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/testdir/newFile.txt"
     lstat returned 0
     si:
@@ -403,11 +831,11 @@ bb_getattr(path="/newFile.txt", statbuf=0x5e019c30)
     st_size = 23
     st_blksize = 4096
     st_blocks = 8
-    st_atime = 0x5d6f38b9
+    st_atime = 0x5d70900f
     st_mtime = 0x5d6f2c41
     st_ctime = 0x5d6f2c41
 
-bb_getattr(path="/testTweakfs.c~", statbuf=0x5d818c30)
+bb_getattr(path="/testTweakfs.c~", statbuf=0x4da79c30)
     bb_fullpath:  rootdir = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/testdir", path = "/testTweakfs.c~", fpath = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/testdir/testTweakfs.c~"
     lstat returned 0
     si:
@@ -418,14 +846,14 @@ bb_getattr(path="/testTweakfs.c~", statbuf=0x5d818c30)
     st_uid = 1187498
     st_gid = 1002
     st_rdev = 0
-    st_size = 530
+    st_size = 560
     st_blksize = 4096
     st_blocks = 8
-    st_atime = 0x5d6fcfc0
-    st_mtime = 0x5d6fcfad
-    st_ctime = 0x5d6fd2cd
+    st_atime = 0x5d709813
+    st_mtime = 0x5d709680
+    st_ctime = 0x5d70982c
 
-bb_getattr(path="/testTweakfs.c", statbuf=0x5e81ac30)
+bb_getattr(path="/testTweakfs.c", statbuf=0x4e27ac30)
     bb_fullpath:  rootdir = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/testdir", path = "/testTweakfs.c", fpath = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/testdir/testTweakfs.c"
     lstat returned 0
     si:
@@ -436,14 +864,14 @@ bb_getattr(path="/testTweakfs.c", statbuf=0x5e81ac30)
     st_uid = 1187498
     st_gid = 1002
     st_rdev = 0
-    st_size = 559
+    st_size = 575
     st_blksize = 4096
     st_blocks = 8
-    st_atime = 0x5d6fd2cf
-    st_mtime = 0x5d6fd2cd
-    st_ctime = 0x5d6fd2cd
+    st_atime = 0x5d709836
+    st_mtime = 0x5d70982c
+    st_ctime = 0x5d70982c
 
-bb_getattr(path="/testTweakfs", statbuf=0x5e019c30)
+bb_getattr(path="/testTweakfs", statbuf=0x4da79c30)
     bb_fullpath:  rootdir = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/testdir", path = "/testTweakfs", fpath = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/testdir/testTweakfs"
     lstat returned 0
     si:
@@ -454,25 +882,25 @@ bb_getattr(path="/testTweakfs", statbuf=0x5e019c30)
     st_uid = 1187498
     st_gid = 1002
     st_rdev = 0
-    st_size = 8584
+    st_size = 8632
     st_blksize = 4096
     st_blocks = 24
-    st_atime = 0x5d6fd2ed
-    st_mtime = 0x5d6fd2cf
-    st_ctime = 0x5d6fd2cf
+    st_atime = 0x5d70983a
+    st_mtime = 0x5d709836
+    st_ctime = 0x5d709836
 comes in buddy condition jump!
 
-bb_releasedir(path="/", fi=0x5e019c30)
+bb_releasedir(path="/", fi=0x4da79c30)
     fi:
     flags = 0x00000000
-    fh_old = 0x7fe9500012d0
+    fh_old = 0x7f8740009750
     writepage = 0
     direct_io = 0
     keep_cache = 0
-    fh = 0x00007fe9500012d0
+    fh = 0x00007f8740009750
     lock_owner = 0x0000000000000000
 
-bb_getattr(path="/", statbuf=0x5d818c00)
+bb_getattr(path="/", statbuf=0x4e27ac00)
     bb_fullpath:  rootdir = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/testdir", path = "/", fpath = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/testdir/"
     lstat returned 0
     si:
@@ -483,44 +911,48 @@ bb_getattr(path="/", statbuf=0x5d818c00)
     st_uid = 1187498
     st_gid = 1002
     st_rdev = 0
-    st_size = 87
+    st_size = 123
     st_blksize = 4096
     st_blocks = 0
-    st_atime = 0x5d6fd2d7
-    st_mtime = 0x5d6fd2cf
-    st_ctime = 0x5d6fd2cf
+    st_atime = 0x5d70a063
+    st_mtime = 0x5d70a061
+    st_ctime = 0x5d70a061
 
-bb_opendir(path="/", fi=0x5e81ac20)
+bb_opendir(path="/", fi=0x4da79c20)
     bb_fullpath:  rootdir = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/testdir", path = "/", fpath = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/testdir/"
-    opendir returned 0x0x7fe95800a6a0
+    opendir returned 0x0x7f8740009750
     fi:
     flags = 0x00018800
     fh_old = 0x00000000
     writepage = 0
     direct_io = 0
     keep_cache = 0
-    fh = 0x00007fe95800a6a0
+    fh = 0x00007f8740009750
     lock_owner = 0x0000000000000000
 
-bb_readdir(path="/", buf=0x580025b0, filler=0x5f037d00, offset=0, fi=0x5e019c20)
-    readdir returned 0x0x7fe95800a6d0
+bb_readdir(path="/", buf=0x40001400, filler=0x4ea97d00, offset=0, fi=0x4e27ac20)
+    readdir returned 0x0x7f8740009780
 calling filler with name .
 calling filler with name ..
 calling filler with name newFile.txt
 calling filler with name testTweakfs.c~
 calling filler with name testTweakfs.c
 calling filler with name testTweakfs
+calling filler with name secret.txt
+Oh, found a secret and will hide it!
+calling filler with name secret.jpg
+Oh, found a secret and will hide it!
 calling filler with name buddy.txt
     fi:
     flags = 0x00000000
-    fh_old = 0x7fe95800a6a0
+    fh_old = 0x7f8740009750
     writepage = 0
     direct_io = 0
     keep_cache = 0
-    fh = 0x00007fe95800a6a0
+    fh = 0x00007f8740009750
     lock_owner = 0x0000000000000000
 
-bb_getattr(path="/", statbuf=0x5d818c00)
+bb_getattr(path="/", statbuf=0x4da79c00)
     bb_fullpath:  rootdir = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/testdir", path = "/", fpath = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/testdir/"
     lstat returned 0
     si:
@@ -531,14 +963,14 @@ bb_getattr(path="/", statbuf=0x5d818c00)
     st_uid = 1187498
     st_gid = 1002
     st_rdev = 0
-    st_size = 87
+    st_size = 123
     st_blksize = 4096
     st_blocks = 0
-    st_atime = 0x5d6fd2d7
-    st_mtime = 0x5d6fd2cf
-    st_ctime = 0x5d6fd2cf
+    st_atime = 0x5d70a063
+    st_mtime = 0x5d70a061
+    st_ctime = 0x5d70a061
 
-bb_getattr(path="/testTweakfs.c~", statbuf=0x5e81ac30)
+bb_getattr(path="/testTweakfs.c~", statbuf=0x4e27ac30)
     bb_fullpath:  rootdir = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/testdir", path = "/testTweakfs.c~", fpath = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/testdir/testTweakfs.c~"
     lstat returned 0
     si:
@@ -549,12 +981,12 @@ bb_getattr(path="/testTweakfs.c~", statbuf=0x5e81ac30)
     st_uid = 1187498
     st_gid = 1002
     st_rdev = 0
-    st_size = 530
+    st_size = 560
     st_blksize = 4096
     st_blocks = 8
-    st_atime = 0x5d6fcfc0
-    st_mtime = 0x5d6fcfad
-    st_ctime = 0x5d6fd2cd
+    st_atime = 0x5d709813
+    st_mtime = 0x5d709680
+    st_ctime = 0x5d70982c
 
 bb_access(path="/testTweakfs.c~", mask=01)
     bb_fullpath:  rootdir = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/testdir", path = "/testTweakfs.c~", fpath = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/testdir/testTweakfs.c~"
@@ -563,7 +995,7 @@ bb_access(path="/testTweakfs.c~", mask=01)
 bb_access(path="/testTweakfs.c~", mask=04)
     bb_fullpath:  rootdir = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/testdir", path = "/testTweakfs.c~", fpath = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/testdir/testTweakfs.c~"
 
-bb_getattr(path="/testTweakfs.c", statbuf=0x5e81ac30)
+bb_getattr(path="/testTweakfs.c", statbuf=0x4da79c30)
     bb_fullpath:  rootdir = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/testdir", path = "/testTweakfs.c", fpath = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/testdir/testTweakfs.c"
     lstat returned 0
     si:
@@ -574,12 +1006,12 @@ bb_getattr(path="/testTweakfs.c", statbuf=0x5e81ac30)
     st_uid = 1187498
     st_gid = 1002
     st_rdev = 0
-    st_size = 559
+    st_size = 575
     st_blksize = 4096
     st_blocks = 8
-    st_atime = 0x5d6fd2cf
-    st_mtime = 0x5d6fd2cd
-    st_ctime = 0x5d6fd2cd
+    st_atime = 0x5d709836
+    st_mtime = 0x5d70982c
+    st_ctime = 0x5d70982c
 
 bb_access(path="/testTweakfs.c", mask=01)
     bb_fullpath:  rootdir = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/testdir", path = "/testTweakfs.c", fpath = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/testdir/testTweakfs.c"
@@ -588,7 +1020,7 @@ bb_access(path="/testTweakfs.c", mask=01)
 bb_access(path="/testTweakfs.c", mask=04)
     bb_fullpath:  rootdir = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/testdir", path = "/testTweakfs.c", fpath = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/testdir/testTweakfs.c"
 
-bb_getattr(path="/testTweakfs", statbuf=0x5e81ac30)
+bb_getattr(path="/testTweakfs", statbuf=0x4e27ac30)
     bb_fullpath:  rootdir = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/testdir", path = "/testTweakfs", fpath = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/testdir/testTweakfs"
     lstat returned 0
     si:
@@ -599,12 +1031,12 @@ bb_getattr(path="/testTweakfs", statbuf=0x5e81ac30)
     st_uid = 1187498
     st_gid = 1002
     st_rdev = 0
-    st_size = 8584
+    st_size = 8632
     st_blksize = 4096
     st_blocks = 24
-    st_atime = 0x5d6fd2ed
-    st_mtime = 0x5d6fd2cf
-    st_ctime = 0x5d6fd2cf
+    st_atime = 0x5d70983a
+    st_mtime = 0x5d709836
+    st_ctime = 0x5d709836
 
 bb_access(path="/testTweakfs", mask=01)
     bb_fullpath:  rootdir = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/testdir", path = "/testTweakfs", fpath = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/testdir/testTweakfs"
@@ -612,17 +1044,17 @@ bb_access(path="/testTweakfs", mask=01)
 bb_access(path="/testTweakfs", mask=04)
     bb_fullpath:  rootdir = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/testdir", path = "/testTweakfs", fpath = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/testdir/testTweakfs"
 
-bb_releasedir(path="/", fi=0x5e019c30)
+bb_releasedir(path="/", fi=0x4e27ac30)
     fi:
     flags = 0x00000000
-    fh_old = 0x7fe95800a6a0
+    fh_old = 0x7f8740009750
     writepage = 0
     direct_io = 0
     keep_cache = 0
-    fh = 0x00007fe95800a6a0
+    fh = 0x00007f8740009750
     lock_owner = 0x0000000000000000
 
-bb_getattr(path="/", statbuf=0x5d818c00)
+bb_getattr(path="/", statbuf=0x4da79c00)
     bb_fullpath:  rootdir = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/testdir", path = "/", fpath = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/testdir/"
     lstat returned 0
     si:
@@ -633,14 +1065,138 @@ bb_getattr(path="/", statbuf=0x5d818c00)
     st_uid = 1187498
     st_gid = 1002
     st_rdev = 0
-    st_size = 87
+    st_size = 123
     st_blksize = 4096
     st_blocks = 0
-    st_atime = 0x5d6fd2d7
-    st_mtime = 0x5d6fd2cf
-    st_ctime = 0x5d6fd2cf
+    st_atime = 0x5d70a063
+    st_mtime = 0x5d70a061
+    st_ctime = 0x5d70a061
 
-bb_getattr(path="/testTweakfs", statbuf=0x5e81ac30)
+bb_opendir(path="/", fi=0x4e27ac20)
+    bb_fullpath:  rootdir = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/testdir", path = "/", fpath = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/testdir/"
+    opendir returned 0x0x7f874800a6a0
+    fi:
+    flags = 0x00018800
+    fh_old = 0x00000000
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x00007f874800a6a0
+    lock_owner = 0x0000000000000000
+
+bb_getattr(path="/", statbuf=0x4da79c00)
+    bb_fullpath:  rootdir = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/testdir", path = "/", fpath = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/testdir/"
+    lstat returned 0
+    si:
+    st_dev = 64770
+    st_ino = 12583116
+    st_mode = 040775
+    st_nlink = 2
+    st_uid = 1187498
+    st_gid = 1002
+    st_rdev = 0
+    st_size = 123
+    st_blksize = 4096
+    st_blocks = 0
+    st_atime = 0x5d70a063
+    st_mtime = 0x5d70a061
+    st_ctime = 0x5d70a061
+
+bb_readdir(path="/", buf=0x48002690, filler=0x4ea97d00, offset=0, fi=0x4d278c20)
+    readdir returned 0x0x7f874800a6d0
+calling filler with name .
+calling filler with name ..
+calling filler with name newFile.txt
+calling filler with name testTweakfs.c~
+calling filler with name testTweakfs.c
+calling filler with name testTweakfs
+calling filler with name secret.txt
+Oh, found a secret and will hide it!
+calling filler with name secret.jpg
+Oh, found a secret and will hide it!
+calling filler with name buddy.txt
+    fi:
+    flags = 0x00000000
+    fh_old = 0x7f874800a6a0
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x00007f874800a6a0
+    lock_owner = 0x0000000000000000
+
+bb_releasedir(path="/", fi=0x4da79c30)
+    fi:
+    flags = 0x00000000
+    fh_old = 0x7f874800a6a0
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x00007f874800a6a0
+    lock_owner = 0x0000000000000000
+
+bb_opendir(path="/", fi=0x4d278c20)
+    bb_fullpath:  rootdir = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/testdir", path = "/", fpath = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/testdir/"
+    opendir returned 0x0x7f8744001220
+    fi:
+    flags = 0x00018800
+    fh_old = 0x00000000
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x00007f8744001220
+    lock_owner = 0x0000000000000000
+
+bb_getattr(path="/", statbuf=0x4e27ac00)
+    bb_fullpath:  rootdir = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/testdir", path = "/", fpath = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/testdir/"
+    lstat returned 0
+    si:
+    st_dev = 64770
+    st_ino = 12583116
+    st_mode = 040775
+    st_nlink = 2
+    st_uid = 1187498
+    st_gid = 1002
+    st_rdev = 0
+    st_size = 123
+    st_blksize = 4096
+    st_blocks = 0
+    st_atime = 0x5d70a063
+    st_mtime = 0x5d70a061
+    st_ctime = 0x5d70a061
+
+bb_readdir(path="/", buf=0x440011a0, filler=0x4ea97d00, offset=0, fi=0x4da79c20)
+    readdir returned 0x0x7f8744001250
+calling filler with name .
+calling filler with name ..
+calling filler with name newFile.txt
+calling filler with name testTweakfs.c~
+calling filler with name testTweakfs.c
+calling filler with name testTweakfs
+calling filler with name secret.txt
+Oh, found a secret and will hide it!
+calling filler with name secret.jpg
+Oh, found a secret and will hide it!
+calling filler with name buddy.txt
+    fi:
+    flags = 0x00000000
+    fh_old = 0x7f8744001220
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x00007f8744001220
+    lock_owner = 0x0000000000000000
+
+bb_releasedir(path="/", fi=0x4e27ac30)
+    fi:
+    flags = 0x00000000
+    fh_old = 0x7f8744001220
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x00007f8744001220
+    lock_owner = 0x0000000000000000
+
+bb_getattr(path="/testTweakfs", statbuf=0x4da79c30)
     bb_fullpath:  rootdir = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/testdir", path = "/testTweakfs", fpath = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/testdir/testTweakfs"
     lstat returned 0
     si:
@@ -651,16 +1207,16 @@ bb_getattr(path="/testTweakfs", statbuf=0x5e81ac30)
     st_uid = 1187498
     st_gid = 1002
     st_rdev = 0
-    st_size = 8584
+    st_size = 8632
     st_blksize = 4096
     st_blocks = 24
-    st_atime = 0x5d6fd2ed
-    st_mtime = 0x5d6fd2cf
-    st_ctime = 0x5d6fd2cf
+    st_atime = 0x5d70983a
+    st_mtime = 0x5d709836
+    st_ctime = 0x5d709836
 you come to bb_open!
 path is: /testTweakfs
 
-bb_open(path"/testTweakfs", fi=0x5e019ce0)
+bb_open(path"/testTweakfs", fi=0x4d278ce0)
     bb_fullpath:  rootdir = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/testdir", path = "/testTweakfs", fpath = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/testdir/testTweakfs"
     open returned 5
     fi:
@@ -672,7 +1228,7 @@ bb_open(path"/testTweakfs", fi=0x5e019ce0)
     fh = 0x0000000000000005
     lock_owner = 0x0000000000000000
 
-bb_read(path="/testTweakfs", buf=0x54001550, size=12288, offset=0, fi=0x5d818ce0)
+bb_read(path="/testTweakfs", buf=0x480036e0, size=12288, offset=0, fi=0x4e27ace0)
     fi:
     flags = 0x00008020
     fh_old = 0x00000005
@@ -681,9 +1237,29 @@ bb_read(path="/testTweakfs", buf=0x54001550, size=12288, offset=0, fi=0x5d818ce0
     keep_cache = 0
     fh = 0x0000000000000005
     lock_owner = 0x0000000000000000
-    pread returned 8584
+    pread returned 8632
 
-bb_release(path="/testTweakfs", fi=0x5e81ace0)
+bb_getattr(path="/secret.jpg", statbuf=0x4da79c30)
+    bb_fullpath:  rootdir = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/testdir", path = "/secret.jpg", fpath = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/testdir/secret.jpg"
+    lstat returned 0
+    si:
+    st_dev = 64770
+    st_ino = 12583704
+    st_mode = 0100664
+    st_nlink = 1
+    st_uid = 1187498
+    st_gid = 1002
+    st_rdev = 0
+    st_size = 0
+    st_blksize = 4096
+    st_blocks = 0
+    st_atime = 0x5d70a061
+    st_mtime = 0x5d70a061
+    st_ctime = 0x5d70a061
+you come to bb_open!
+path is: /secret.jpg
+
+bb_release(path="/testTweakfs", fi=0x4e27ace0)
     fi:
     flags = 0x00008020
     fh_old = 0x00000005
@@ -694,19 +1270,19 @@ bb_release(path="/testTweakfs", fi=0x5e81ace0)
     lock_owner = 0x0000000000000000
     close returned 0
 
-bb_opendir(path="/", fi=0x5e019c20)
+bb_opendir(path="/", fi=0x4da79c20)
     bb_fullpath:  rootdir = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/testdir", path = "/", fpath = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/testdir/"
-    opendir returned 0x0x7fe950001350
+    opendir returned 0x0x7f8740009750
     fi:
     flags = 0x00018800
     fh_old = 0x00000000
     writepage = 0
     direct_io = 0
     keep_cache = 0
-    fh = 0x00007fe950001350
+    fh = 0x00007f8740009750
     lock_owner = 0x0000000000000000
 
-bb_getattr(path="/", statbuf=0x5d818c00)
+bb_getattr(path="/", statbuf=0x4d278c00)
     bb_fullpath:  rootdir = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/testdir", path = "/", fpath = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/testdir/"
     lstat returned 0
     si:
@@ -717,116 +1293,127 @@ bb_getattr(path="/", statbuf=0x5d818c00)
     st_uid = 1187498
     st_gid = 1002
     st_rdev = 0
-    st_size = 87
+    st_size = 123
     st_blksize = 4096
     st_blocks = 0
-    st_atime = 0x5d6fd2d7
-    st_mtime = 0x5d6fd2cf
-    st_ctime = 0x5d6fd2cf
+    st_atime = 0x5d70a063
+    st_mtime = 0x5d70a061
+    st_ctime = 0x5d70a061
 
-bb_readdir(path="/", buf=0x500012d0, filler=0x5f037d00, offset=0, fi=0x5e81ac20)
-    readdir returned 0x0x7fe950001380
+bb_readdir(path="/", buf=0x40001630, filler=0x4ea97d00, offset=0, fi=0x4e27ac20)
+    readdir returned 0x0x7f8740009780
 calling filler with name .
 calling filler with name ..
 calling filler with name newFile.txt
 calling filler with name testTweakfs.c~
 calling filler with name testTweakfs.c
 calling filler with name testTweakfs
+calling filler with name secret.txt
+Oh, found a secret and will hide it!
+calling filler with name secret.jpg
+Oh, found a secret and will hide it!
 calling filler with name buddy.txt
     fi:
     flags = 0x00000000
-    fh_old = 0x7fe950001350
+    fh_old = 0x7f8740009750
     writepage = 0
     direct_io = 0
     keep_cache = 0
-    fh = 0x00007fe950001350
+    fh = 0x00007f8740009750
     lock_owner = 0x0000000000000000
 
-bb_getattr(path="/newFile.txt", statbuf=0x5e019c30)
-    bb_fullpath:  rootdir = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/testdir", path = "/newFile.txt", fpath = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/testdir/newFile.txt"
+bb_releasedir(path="/", fi=0x4d278c30)
+    fi:
+    flags = 0x00000000
+    fh_old = 0x7f8740009750
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x00007f8740009750
+    lock_owner = 0x0000000000000000
+comes in buddy condition jump!
+
+bb_opendir(path="/", fi=0x4da79c20)
+    bb_fullpath:  rootdir = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/testdir", path = "/", fpath = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/testdir/"
+    opendir returned 0x0x7f8740009750
+    fi:
+    flags = 0x00018800
+    fh_old = 0x00000000
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x00007f8740009750
+    lock_owner = 0x0000000000000000
+
+bb_getattr(path="/", statbuf=0x4d278c00)
+    bb_fullpath:  rootdir = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/testdir", path = "/", fpath = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/testdir/"
     lstat returned 0
     si:
     st_dev = 64770
-    st_ino = 12583123
-    st_mode = 0100664
-    st_nlink = 1
+    st_ino = 12583116
+    st_mode = 040775
+    st_nlink = 2
     st_uid = 1187498
     st_gid = 1002
     st_rdev = 0
-    st_size = 23
+    st_size = 123
     st_blksize = 4096
-    st_blocks = 8
-    st_atime = 0x5d6f38b9
-    st_mtime = 0x5d6f2c41
-    st_ctime = 0x5d6f2c41
+    st_blocks = 0
+    st_atime = 0x5d70a063
+    st_mtime = 0x5d70a061
+    st_ctime = 0x5d70a061
 
-bb_getxattr(path = "/newFile.txt", name = "security.selinux", value = 0x54000bf0, size = 255)
-    bb_fullpath:  rootdir = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/testdir", path = "/newFile.txt", fpath = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/testdir/newFile.txt"
-    lgetxattr returned -1
-    ERROR lgetxattr: No data available
+bb_readdir(path="/", buf=0x400016b0, filler=0x4ea97d00, offset=0, fi=0x4e27ac20)
+    readdir returned 0x0x7f8740009780
+calling filler with name .
+calling filler with name ..
+calling filler with name newFile.txt
+calling filler with name testTweakfs.c~
+calling filler with name testTweakfs.c
+calling filler with name testTweakfs
+calling filler with name secret.txt
+Oh, found a secret and will hide it!
+calling filler with name secret.jpg
+Oh, found a secret and will hide it!
+calling filler with name buddy.txt
+    fi:
+    flags = 0x00000000
+    fh_old = 0x7f8740009750
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x00007f8740009750
+    lock_owner = 0x0000000000000000
 
-bb_getxattr(path = "/newFile.txt", name = "system.posix_acl_access", value = 0x00000000, size = 0)
-    bb_fullpath:  rootdir = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/testdir", path = "/newFile.txt", fpath = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/testdir/newFile.txt"
-    lgetxattr returned -1
-    ERROR lgetxattr: No data available
+bb_releasedir(path="/", fi=0x4d278c30)
+    fi:
+    flags = 0x00000000
+    fh_old = 0x7f8740009750
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x00007f8740009750
+    lock_owner = 0x0000000000000000
 
-bb_getattr(path="/testTweakfs.c~", statbuf=0x5e019c30)
-    bb_fullpath:  rootdir = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/testdir", path = "/testTweakfs.c~", fpath = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/testdir/testTweakfs.c~"
+bb_getattr(path="/", statbuf=0x4e27ac00)
+    bb_fullpath:  rootdir = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/testdir", path = "/", fpath = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/testdir/"
     lstat returned 0
     si:
     st_dev = 64770
-    st_ino = 12583124
-    st_mode = 0100664
-    st_nlink = 1
+    st_ino = 12583116
+    st_mode = 040775
+    st_nlink = 2
     st_uid = 1187498
     st_gid = 1002
     st_rdev = 0
-    st_size = 530
+    st_size = 123
     st_blksize = 4096
-    st_blocks = 8
-    st_atime = 0x5d6fcfc0
-    st_mtime = 0x5d6fcfad
-    st_ctime = 0x5d6fd2cd
+    st_blocks = 0
+    st_atime = 0x5d70a063
+    st_mtime = 0x5d70a061
+    st_ctime = 0x5d70a061
 
-bb_getxattr(path = "/testTweakfs.c~", name = "security.selinux", value = 0x54000bf0, size = 255)
-    bb_fullpath:  rootdir = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/testdir", path = "/testTweakfs.c~", fpath = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/testdir/testTweakfs.c~"
-    lgetxattr returned -1
-    ERROR lgetxattr: No data available
-
-bb_getxattr(path = "/testTweakfs.c~", name = "system.posix_acl_access", value = 0x00000000, size = 0)
-    bb_fullpath:  rootdir = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/testdir", path = "/testTweakfs.c~", fpath = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/testdir/testTweakfs.c~"
-    lgetxattr returned -1
-    ERROR lgetxattr: No data available
-
-bb_getattr(path="/testTweakfs.c", statbuf=0x5e019c30)
-    bb_fullpath:  rootdir = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/testdir", path = "/testTweakfs.c", fpath = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/testdir/testTweakfs.c"
-    lstat returned 0
-    si:
-    st_dev = 64770
-    st_ino = 12583125
-    st_mode = 0100664
-    st_nlink = 1
-    st_uid = 1187498
-    st_gid = 1002
-    st_rdev = 0
-    st_size = 559
-    st_blksize = 4096
-    st_blocks = 8
-    st_atime = 0x5d6fd2cf
-    st_mtime = 0x5d6fd2cd
-    st_ctime = 0x5d6fd2cd
-
-bb_getxattr(path = "/testTweakfs.c", name = "security.selinux", value = 0x54000bf0, size = 255)
-    bb_fullpath:  rootdir = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/testdir", path = "/testTweakfs.c", fpath = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/testdir/testTweakfs.c"
-    lgetxattr returned -1
-    ERROR lgetxattr: No data available
-
-bb_getxattr(path = "/testTweakfs.c", name = "system.posix_acl_access", value = 0x00000000, size = 0)
-    bb_fullpath:  rootdir = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/testdir", path = "/testTweakfs.c", fpath = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/testdir/testTweakfs.c"
-    lgetxattr returned -1
-    ERROR lgetxattr: No data available
-
-bb_getattr(path="/testTweakfs", statbuf=0x5e019c30)
+bb_getattr(path="/testTweakfs", statbuf=0x4da79c30)
     bb_fullpath:  rootdir = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/testdir", path = "/testTweakfs", fpath = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/testdir/testTweakfs"
     lstat returned 0
     si:
@@ -837,1090 +1424,103 @@ bb_getattr(path="/testTweakfs", statbuf=0x5e019c30)
     st_uid = 1187498
     st_gid = 1002
     st_rdev = 0
-    st_size = 8584
+    st_size = 8632
     st_blksize = 4096
     st_blocks = 24
-    st_atime = 0x5d6fd2ed
-    st_mtime = 0x5d6fd2cf
-    st_ctime = 0x5d6fd2cf
+    st_atime = 0x5d70983a
+    st_mtime = 0x5d709836
+    st_ctime = 0x5d709836
+you come to bb_open!
+path is: /testTweakfs
 
-bb_getxattr(path = "/testTweakfs", name = "security.selinux", value = 0x54000bf0, size = 255)
+bb_open(path"/testTweakfs", fi=0x4d278ce0)
     bb_fullpath:  rootdir = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/testdir", path = "/testTweakfs", fpath = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/testdir/testTweakfs"
-    lgetxattr returned -1
-    ERROR lgetxattr: No data available
-
-bb_getxattr(path = "/testTweakfs", name = "system.posix_acl_access", value = 0x00000000, size = 0)
-    bb_fullpath:  rootdir = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/testdir", path = "/testTweakfs", fpath = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/testdir/testTweakfs"
-    lgetxattr returned -1
-    ERROR lgetxattr: No data available
-comes in buddy condition jump!
-
-bb_getxattr(path = "/buddy.txt", name = "security.selinux", value = 0x54000bf0, size = 255)
-    bb_fullpath:  rootdir = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/testdir", path = "/buddy.txt", fpath = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/testdir/buddy.txt"
-    lgetxattr returned -1
-    ERROR lgetxattr: No such file or directory
-
-bb_releasedir(path="/", fi=0x5e019c30)
+    open returned 5
     fi:
-    flags = 0x00000000
-    fh_old = 0x7fe950001350
-    writepage = 0
-    direct_io = 0
-    keep_cache = 0
-    fh = 0x00007fe950001350
-    lock_owner = 0x0000000000000000
-
-bb_opendir(path="/", fi=0x5d818c20)
-    bb_fullpath:  rootdir = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/testdir", path = "/", fpath = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/testdir/"
-    opendir returned 0x0x7fe9540016e0
-    fi:
-    flags = 0x00018800
+    flags = 0x00008020
     fh_old = 0x00000000
     writepage = 0
     direct_io = 0
     keep_cache = 0
-    fh = 0x00007fe9540016e0
+    fh = 0x0000000000000005
     lock_owner = 0x0000000000000000
 
-bb_getattr(path="/", statbuf=0x5e81ac00)
-    bb_fullpath:  rootdir = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/testdir", path = "/", fpath = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/testdir/"
-    lstat returned 0
-    si:
-    st_dev = 64770
-    st_ino = 12583116
-    st_mode = 040775
-    st_nlink = 2
-    st_uid = 1187498
-    st_gid = 1002
-    st_rdev = 0
-    st_size = 87
-    st_blksize = 4096
-    st_blocks = 0
-    st_atime = 0x5d6fd2d7
-    st_mtime = 0x5d6fd2cf
-    st_ctime = 0x5d6fd2cf
-
-bb_readdir(path="/", buf=0x54001660, filler=0x5f037d00, offset=0, fi=0x5e019c20)
-    readdir returned 0x0x7fe954001710
-calling filler with name .
-calling filler with name ..
-calling filler with name newFile.txt
-calling filler with name testTweakfs.c~
-calling filler with name testTweakfs.c
-calling filler with name testTweakfs
-calling filler with name buddy.txt
+bb_read(path="/testTweakfs", buf=0x480036e0, size=12288, offset=0, fi=0x4e27ace0)
     fi:
-    flags = 0x00000000
-    fh_old = 0x7fe9540016e0
+    flags = 0x00008020
+    fh_old = 0x00000005
     writepage = 0
     direct_io = 0
     keep_cache = 0
-    fh = 0x00007fe9540016e0
+    fh = 0x0000000000000005
     lock_owner = 0x0000000000000000
-
-bb_getattr(path="/newFile.txt", statbuf=0x5d818c30)
-    bb_fullpath:  rootdir = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/testdir", path = "/newFile.txt", fpath = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/testdir/newFile.txt"
-    lstat returned 0
-    si:
-    st_dev = 64770
-    st_ino = 12583123
-    st_mode = 0100664
-    st_nlink = 1
-    st_uid = 1187498
-    st_gid = 1002
-    st_rdev = 0
-    st_size = 23
-    st_blksize = 4096
-    st_blocks = 8
-    st_atime = 0x5d6f38b9
-    st_mtime = 0x5d6f2c41
-    st_ctime = 0x5d6f2c41
-
-bb_getattr(path="/testTweakfs.c~", statbuf=0x5e81ac30)
-    bb_fullpath:  rootdir = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/testdir", path = "/testTweakfs.c~", fpath = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/testdir/testTweakfs.c~"
-    lstat returned 0
-    si:
-    st_dev = 64770
-    st_ino = 12583124
-    st_mode = 0100664
-    st_nlink = 1
-    st_uid = 1187498
-    st_gid = 1002
-    st_rdev = 0
-    st_size = 530
-    st_blksize = 4096
-    st_blocks = 8
-    st_atime = 0x5d6fcfc0
-    st_mtime = 0x5d6fcfad
-    st_ctime = 0x5d6fd2cd
-
-bb_getattr(path="/testTweakfs.c", statbuf=0x5e019c30)
-    bb_fullpath:  rootdir = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/testdir", path = "/testTweakfs.c", fpath = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/testdir/testTweakfs.c"
-    lstat returned 0
-    si:
-    st_dev = 64770
-    st_ino = 12583125
-    st_mode = 0100664
-    st_nlink = 1
-    st_uid = 1187498
-    st_gid = 1002
-    st_rdev = 0
-    st_size = 559
-    st_blksize = 4096
-    st_blocks = 8
-    st_atime = 0x5d6fd2cf
-    st_mtime = 0x5d6fd2cd
-    st_ctime = 0x5d6fd2cd
-
-bb_getattr(path="/testTweakfs", statbuf=0x5d818c30)
-    bb_fullpath:  rootdir = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/testdir", path = "/testTweakfs", fpath = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/testdir/testTweakfs"
-    lstat returned 0
-    si:
-    st_dev = 64770
-    st_ino = 12583121
-    st_mode = 0100775
-    st_nlink = 1
-    st_uid = 1187498
-    st_gid = 1002
-    st_rdev = 0
-    st_size = 8584
-    st_blksize = 4096
-    st_blocks = 24
-    st_atime = 0x5d6fd2ed
-    st_mtime = 0x5d6fd2cf
-    st_ctime = 0x5d6fd2cf
-comes in buddy condition jump!
-
-bb_releasedir(path="/", fi=0x5d818c30)
-    fi:
-    flags = 0x00000000
-    fh_old = 0x7fe9540016e0
-    writepage = 0
-    direct_io = 0
-    keep_cache = 0
-    fh = 0x00007fe9540016e0
-    lock_owner = 0x0000000000000000
-
-bb_opendir(path="/", fi=0x5e81ac20)
-    bb_fullpath:  rootdir = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/testdir", path = "/", fpath = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/testdir/"
-    opendir returned 0x0x7fe95800a6a0
-    fi:
-    flags = 0x00018800
-    fh_old = 0x00000000
-    writepage = 0
-    direct_io = 0
-    keep_cache = 0
-    fh = 0x00007fe95800a6a0
-    lock_owner = 0x0000000000000000
-
-bb_getattr(path="/", statbuf=0x5e019c00)
-    bb_fullpath:  rootdir = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/testdir", path = "/", fpath = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/testdir/"
-    lstat returned 0
-    si:
-    st_dev = 64770
-    st_ino = 12583116
-    st_mode = 040775
-    st_nlink = 2
-    st_uid = 1187498
-    st_gid = 1002
-    st_rdev = 0
-    st_size = 87
-    st_blksize = 4096
-    st_blocks = 0
-    st_atime = 0x5d6fd2d7
-    st_mtime = 0x5d6fd2cf
-    st_ctime = 0x5d6fd2cf
-
-bb_readdir(path="/", buf=0x58002a40, filler=0x5f037d00, offset=0, fi=0x5d818c20)
-    readdir returned 0x0x7fe95800a6d0
-calling filler with name .
-calling filler with name ..
-calling filler with name newFile.txt
-calling filler with name testTweakfs.c~
-calling filler with name testTweakfs.c
-calling filler with name testTweakfs
-calling filler with name buddy.txt
-    fi:
-    flags = 0x00000000
-    fh_old = 0x7fe95800a6a0
-    writepage = 0
-    direct_io = 0
-    keep_cache = 0
-    fh = 0x00007fe95800a6a0
-    lock_owner = 0x0000000000000000
-
-bb_getattr(path="/newFile.txt", statbuf=0x5e81ac30)
-    bb_fullpath:  rootdir = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/testdir", path = "/newFile.txt", fpath = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/testdir/newFile.txt"
-    lstat returned 0
-    si:
-    st_dev = 64770
-    st_ino = 12583123
-    st_mode = 0100664
-    st_nlink = 1
-    st_uid = 1187498
-    st_gid = 1002
-    st_rdev = 0
-    st_size = 23
-    st_blksize = 4096
-    st_blocks = 8
-    st_atime = 0x5d6f38b9
-    st_mtime = 0x5d6f2c41
-    st_ctime = 0x5d6f2c41
-
-bb_getattr(path="/testTweakfs.c~", statbuf=0x5e019c30)
-    bb_fullpath:  rootdir = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/testdir", path = "/testTweakfs.c~", fpath = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/testdir/testTweakfs.c~"
-    lstat returned 0
-    si:
-    st_dev = 64770
-    st_ino = 12583124
-    st_mode = 0100664
-    st_nlink = 1
-    st_uid = 1187498
-    st_gid = 1002
-    st_rdev = 0
-    st_size = 530
-    st_blksize = 4096
-    st_blocks = 8
-    st_atime = 0x5d6fcfc0
-    st_mtime = 0x5d6fcfad
-    st_ctime = 0x5d6fd2cd
-
-bb_getattr(path="/testTweakfs.c", statbuf=0x5d818c30)
-    bb_fullpath:  rootdir = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/testdir", path = "/testTweakfs.c", fpath = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/testdir/testTweakfs.c"
-    lstat returned 0
-    si:
-    st_dev = 64770
-    st_ino = 12583125
-    st_mode = 0100664
-    st_nlink = 1
-    st_uid = 1187498
-    st_gid = 1002
-    st_rdev = 0
-    st_size = 559
-    st_blksize = 4096
-    st_blocks = 8
-    st_atime = 0x5d6fd2cf
-    st_mtime = 0x5d6fd2cd
-    st_ctime = 0x5d6fd2cd
-
-bb_getattr(path="/testTweakfs", statbuf=0x5e81ac30)
-    bb_fullpath:  rootdir = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/testdir", path = "/testTweakfs", fpath = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/testdir/testTweakfs"
-    lstat returned 0
-    si:
-    st_dev = 64770
-    st_ino = 12583121
-    st_mode = 0100775
-    st_nlink = 1
-    st_uid = 1187498
-    st_gid = 1002
-    st_rdev = 0
-    st_size = 8584
-    st_blksize = 4096
-    st_blocks = 24
-    st_atime = 0x5d6fd2ed
-    st_mtime = 0x5d6fd2cf
-    st_ctime = 0x5d6fd2cf
-comes in buddy condition jump!
-
-bb_releasedir(path="/", fi=0x5e81ac30)
-    fi:
-    flags = 0x00000000
-    fh_old = 0x7fe95800a6a0
-    writepage = 0
-    direct_io = 0
-    keep_cache = 0
-    fh = 0x00007fe95800a6a0
-    lock_owner = 0x0000000000000000
-
-bb_opendir(path="/", fi=0x5e019c20)
-    bb_fullpath:  rootdir = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/testdir", path = "/", fpath = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/testdir/"
-    opendir returned 0x0x7fe9500013d0
-    fi:
-    flags = 0x00018800
-    fh_old = 0x00000000
-    writepage = 0
-    direct_io = 0
-    keep_cache = 0
-    fh = 0x00007fe9500013d0
-    lock_owner = 0x0000000000000000
-
-bb_getattr(path="/", statbuf=0x5d818c00)
-    bb_fullpath:  rootdir = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/testdir", path = "/", fpath = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/testdir/"
-    lstat returned 0
-    si:
-    st_dev = 64770
-    st_ino = 12583116
-    st_mode = 040775
-    st_nlink = 2
-    st_uid = 1187498
-    st_gid = 1002
-    st_rdev = 0
-    st_size = 87
-    st_blksize = 4096
-    st_blocks = 0
-    st_atime = 0x5d6fd2d7
-    st_mtime = 0x5d6fd2cf
-    st_ctime = 0x5d6fd2cf
-
-bb_readdir(path="/", buf=0x50001350, filler=0x5f037d00, offset=0, fi=0x5e81ac20)
-    readdir returned 0x0x7fe950001400
-calling filler with name .
-calling filler with name ..
-calling filler with name newFile.txt
-calling filler with name testTweakfs.c~
-calling filler with name testTweakfs.c
-calling filler with name testTweakfs
-calling filler with name buddy.txt
-    fi:
-    flags = 0x00000000
-    fh_old = 0x7fe9500013d0
-    writepage = 0
-    direct_io = 0
-    keep_cache = 0
-    fh = 0x00007fe9500013d0
-    lock_owner = 0x0000000000000000
-
-bb_getattr(path="/newFile.txt", statbuf=0x5e019c30)
-    bb_fullpath:  rootdir = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/testdir", path = "/newFile.txt", fpath = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/testdir/newFile.txt"
-    lstat returned 0
-    si:
-    st_dev = 64770
-    st_ino = 12583123
-    st_mode = 0100664
-    st_nlink = 1
-    st_uid = 1187498
-    st_gid = 1002
-    st_rdev = 0
-    st_size = 23
-    st_blksize = 4096
-    st_blocks = 8
-    st_atime = 0x5d6f38b9
-    st_mtime = 0x5d6f2c41
-    st_ctime = 0x5d6f2c41
-
-bb_getxattr(path = "/newFile.txt", name = "security.selinux", value = 0x54000bf0, size = 255)
-    bb_fullpath:  rootdir = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/testdir", path = "/newFile.txt", fpath = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/testdir/newFile.txt"
-    lgetxattr returned -1
-    ERROR lgetxattr: No data available
-
-bb_getxattr(path = "/newFile.txt", name = "system.posix_acl_access", value = 0x00000000, size = 0)
-    bb_fullpath:  rootdir = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/testdir", path = "/newFile.txt", fpath = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/testdir/newFile.txt"
-    lgetxattr returned -1
-    ERROR lgetxattr: No data available
-
-bb_getattr(path="/testTweakfs.c~", statbuf=0x5e019c30)
-    bb_fullpath:  rootdir = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/testdir", path = "/testTweakfs.c~", fpath = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/testdir/testTweakfs.c~"
-    lstat returned 0
-    si:
-    st_dev = 64770
-    st_ino = 12583124
-    st_mode = 0100664
-    st_nlink = 1
-    st_uid = 1187498
-    st_gid = 1002
-    st_rdev = 0
-    st_size = 530
-    st_blksize = 4096
-    st_blocks = 8
-    st_atime = 0x5d6fcfc0
-    st_mtime = 0x5d6fcfad
-    st_ctime = 0x5d6fd2cd
-
-bb_getxattr(path = "/testTweakfs.c~", name = "security.selinux", value = 0x54000bf0, size = 255)
-    bb_fullpath:  rootdir = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/testdir", path = "/testTweakfs.c~", fpath = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/testdir/testTweakfs.c~"
-    lgetxattr returned -1
-    ERROR lgetxattr: No data available
-
-bb_getxattr(path = "/testTweakfs.c~", name = "system.posix_acl_access", value = 0x00000000, size = 0)
-    bb_fullpath:  rootdir = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/testdir", path = "/testTweakfs.c~", fpath = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/testdir/testTweakfs.c~"
-    lgetxattr returned -1
-    ERROR lgetxattr: No data available
-
-bb_getattr(path="/testTweakfs.c", statbuf=0x5e019c30)
-    bb_fullpath:  rootdir = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/testdir", path = "/testTweakfs.c", fpath = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/testdir/testTweakfs.c"
-    lstat returned 0
-    si:
-    st_dev = 64770
-    st_ino = 12583125
-    st_mode = 0100664
-    st_nlink = 1
-    st_uid = 1187498
-    st_gid = 1002
-    st_rdev = 0
-    st_size = 559
-    st_blksize = 4096
-    st_blocks = 8
-    st_atime = 0x5d6fd2cf
-    st_mtime = 0x5d6fd2cd
-    st_ctime = 0x5d6fd2cd
-
-bb_getxattr(path = "/testTweakfs.c", name = "security.selinux", value = 0x54000bf0, size = 255)
-    bb_fullpath:  rootdir = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/testdir", path = "/testTweakfs.c", fpath = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/testdir/testTweakfs.c"
-    lgetxattr returned -1
-    ERROR lgetxattr: No data available
-
-bb_getxattr(path = "/testTweakfs.c", name = "system.posix_acl_access", value = 0x00000000, size = 0)
-    bb_fullpath:  rootdir = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/testdir", path = "/testTweakfs.c", fpath = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/testdir/testTweakfs.c"
-    lgetxattr returned -1
-    ERROR lgetxattr: No data available
-
-bb_getattr(path="/testTweakfs", statbuf=0x5e019c30)
-    bb_fullpath:  rootdir = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/testdir", path = "/testTweakfs", fpath = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/testdir/testTweakfs"
-    lstat returned 0
-    si:
-    st_dev = 64770
-    st_ino = 12583121
-    st_mode = 0100775
-    st_nlink = 1
-    st_uid = 1187498
-    st_gid = 1002
-    st_rdev = 0
-    st_size = 8584
-    st_blksize = 4096
-    st_blocks = 24
-    st_atime = 0x5d6fd2ed
-    st_mtime = 0x5d6fd2cf
-    st_ctime = 0x5d6fd2cf
-
-bb_getxattr(path = "/testTweakfs", name = "security.selinux", value = 0x54000bf0, size = 255)
-    bb_fullpath:  rootdir = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/testdir", path = "/testTweakfs", fpath = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/testdir/testTweakfs"
-    lgetxattr returned -1
-    ERROR lgetxattr: No data available
-
-bb_getxattr(path = "/testTweakfs", name = "system.posix_acl_access", value = 0x00000000, size = 0)
-    bb_fullpath:  rootdir = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/testdir", path = "/testTweakfs", fpath = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/testdir/testTweakfs"
-    lgetxattr returned -1
-    ERROR lgetxattr: No data available
-comes in buddy condition jump!
-
-bb_getxattr(path = "/buddy.txt", name = "security.selinux", value = 0x54000bf0, size = 255)
-    bb_fullpath:  rootdir = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/testdir", path = "/buddy.txt", fpath = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/testdir/buddy.txt"
-    lgetxattr returned -1
-    ERROR lgetxattr: No such file or directory
-
-bb_releasedir(path="/", fi=0x5e019c30)
-    fi:
-    flags = 0x00000000
-    fh_old = 0x7fe9500013d0
-    writepage = 0
-    direct_io = 0
-    keep_cache = 0
-    fh = 0x00007fe9500013d0
-    lock_owner = 0x0000000000000000
-
-bb_opendir(path="/", fi=0x5d818c20)
-    bb_fullpath:  rootdir = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/testdir", path = "/", fpath = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/testdir/"
-    opendir returned 0x0x7fe954001760
-    fi:
-    flags = 0x00018800
-    fh_old = 0x00000000
-    writepage = 0
-    direct_io = 0
-    keep_cache = 0
-    fh = 0x00007fe954001760
-    lock_owner = 0x0000000000000000
-
-bb_getattr(path="/", statbuf=0x5e81ac00)
-    bb_fullpath:  rootdir = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/testdir", path = "/", fpath = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/testdir/"
-    lstat returned 0
-    si:
-    st_dev = 64770
-    st_ino = 12583116
-    st_mode = 040775
-    st_nlink = 2
-    st_uid = 1187498
-    st_gid = 1002
-    st_rdev = 0
-    st_size = 87
-    st_blksize = 4096
-    st_blocks = 0
-    st_atime = 0x5d6fd2d7
-    st_mtime = 0x5d6fd2cf
-    st_ctime = 0x5d6fd2cf
-
-bb_readdir(path="/", buf=0x540016e0, filler=0x5f037d00, offset=0, fi=0x5e019c20)
-    readdir returned 0x0x7fe954001790
-calling filler with name .
-calling filler with name ..
-calling filler with name newFile.txt
-calling filler with name testTweakfs.c~
-calling filler with name testTweakfs.c
-calling filler with name testTweakfs
-calling filler with name buddy.txt
-    fi:
-    flags = 0x00000000
-    fh_old = 0x7fe954001760
-    writepage = 0
-    direct_io = 0
-    keep_cache = 0
-    fh = 0x00007fe954001760
-    lock_owner = 0x0000000000000000
-
-bb_getattr(path="/newFile.txt", statbuf=0x5d818c30)
-    bb_fullpath:  rootdir = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/testdir", path = "/newFile.txt", fpath = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/testdir/newFile.txt"
-    lstat returned 0
-    si:
-    st_dev = 64770
-    st_ino = 12583123
-    st_mode = 0100664
-    st_nlink = 1
-    st_uid = 1187498
-    st_gid = 1002
-    st_rdev = 0
-    st_size = 23
-    st_blksize = 4096
-    st_blocks = 8
-    st_atime = 0x5d6f38b9
-    st_mtime = 0x5d6f2c41
-    st_ctime = 0x5d6f2c41
-
-bb_getattr(path="/testTweakfs.c~", statbuf=0x5e81ac30)
-    bb_fullpath:  rootdir = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/testdir", path = "/testTweakfs.c~", fpath = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/testdir/testTweakfs.c~"
-    lstat returned 0
-    si:
-    st_dev = 64770
-    st_ino = 12583124
-    st_mode = 0100664
-    st_nlink = 1
-    st_uid = 1187498
-    st_gid = 1002
-    st_rdev = 0
-    st_size = 530
-    st_blksize = 4096
-    st_blocks = 8
-    st_atime = 0x5d6fcfc0
-    st_mtime = 0x5d6fcfad
-    st_ctime = 0x5d6fd2cd
-
-bb_getattr(path="/testTweakfs.c", statbuf=0x5e019c30)
-    bb_fullpath:  rootdir = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/testdir", path = "/testTweakfs.c", fpath = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/testdir/testTweakfs.c"
-    lstat returned 0
-    si:
-    st_dev = 64770
-    st_ino = 12583125
-    st_mode = 0100664
-    st_nlink = 1
-    st_uid = 1187498
-    st_gid = 1002
-    st_rdev = 0
-    st_size = 559
-    st_blksize = 4096
-    st_blocks = 8
-    st_atime = 0x5d6fd2cf
-    st_mtime = 0x5d6fd2cd
-    st_ctime = 0x5d6fd2cd
-
-bb_getattr(path="/testTweakfs", statbuf=0x5d818c30)
-    bb_fullpath:  rootdir = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/testdir", path = "/testTweakfs", fpath = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/testdir/testTweakfs"
-    lstat returned 0
-    si:
-    st_dev = 64770
-    st_ino = 12583121
-    st_mode = 0100775
-    st_nlink = 1
-    st_uid = 1187498
-    st_gid = 1002
-    st_rdev = 0
-    st_size = 8584
-    st_blksize = 4096
-    st_blocks = 24
-    st_atime = 0x5d6fd2ed
-    st_mtime = 0x5d6fd2cf
-    st_ctime = 0x5d6fd2cf
-comes in buddy condition jump!
-
-bb_releasedir(path="/", fi=0x5d818c30)
-    fi:
-    flags = 0x00000000
-    fh_old = 0x7fe954001760
-    writepage = 0
-    direct_io = 0
-    keep_cache = 0
-    fh = 0x00007fe954001760
-    lock_owner = 0x0000000000000000
-
-bb_opendir(path="/", fi=0x5e81ac20)
-    bb_fullpath:  rootdir = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/testdir", path = "/", fpath = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/testdir/"
-    opendir returned 0x0x7fe95800a6a0
-    fi:
-    flags = 0x00018800
-    fh_old = 0x00000000
-    writepage = 0
-    direct_io = 0
-    keep_cache = 0
-    fh = 0x00007fe95800a6a0
-    lock_owner = 0x0000000000000000
-
-bb_getattr(path="/", statbuf=0x5e019c00)
-    bb_fullpath:  rootdir = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/testdir", path = "/", fpath = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/testdir/"
-    lstat returned 0
-    si:
-    st_dev = 64770
-    st_ino = 12583116
-    st_mode = 040775
-    st_nlink = 2
-    st_uid = 1187498
-    st_gid = 1002
-    st_rdev = 0
-    st_size = 87
-    st_blksize = 4096
-    st_blocks = 0
-    st_atime = 0x5d6fd2d7
-    st_mtime = 0x5d6fd2cf
-    st_ctime = 0x5d6fd2cf
-
-bb_readdir(path="/", buf=0x58002ac0, filler=0x5f037d00, offset=0, fi=0x5d818c20)
-    readdir returned 0x0x7fe95800a6d0
-calling filler with name .
-calling filler with name ..
-calling filler with name newFile.txt
-calling filler with name testTweakfs.c~
-calling filler with name testTweakfs.c
-calling filler with name testTweakfs
-calling filler with name buddy.txt
-    fi:
-    flags = 0x00000000
-    fh_old = 0x7fe95800a6a0
-    writepage = 0
-    direct_io = 0
-    keep_cache = 0
-    fh = 0x00007fe95800a6a0
-    lock_owner = 0x0000000000000000
-
-bb_getattr(path="/newFile.txt", statbuf=0x5e81ac30)
-    bb_fullpath:  rootdir = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/testdir", path = "/newFile.txt", fpath = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/testdir/newFile.txt"
-    lstat returned 0
-    si:
-    st_dev = 64770
-    st_ino = 12583123
-    st_mode = 0100664
-    st_nlink = 1
-    st_uid = 1187498
-    st_gid = 1002
-    st_rdev = 0
-    st_size = 23
-    st_blksize = 4096
-    st_blocks = 8
-    st_atime = 0x5d6f38b9
-    st_mtime = 0x5d6f2c41
-    st_ctime = 0x5d6f2c41
-
-bb_getattr(path="/testTweakfs.c~", statbuf=0x5e019c30)
-    bb_fullpath:  rootdir = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/testdir", path = "/testTweakfs.c~", fpath = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/testdir/testTweakfs.c~"
-    lstat returned 0
-    si:
-    st_dev = 64770
-    st_ino = 12583124
-    st_mode = 0100664
-    st_nlink = 1
-    st_uid = 1187498
-    st_gid = 1002
-    st_rdev = 0
-    st_size = 530
-    st_blksize = 4096
-    st_blocks = 8
-    st_atime = 0x5d6fcfc0
-    st_mtime = 0x5d6fcfad
-    st_ctime = 0x5d6fd2cd
-
-bb_getattr(path="/testTweakfs.c", statbuf=0x5d818c30)
-    bb_fullpath:  rootdir = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/testdir", path = "/testTweakfs.c", fpath = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/testdir/testTweakfs.c"
-    lstat returned 0
-    si:
-    st_dev = 64770
-    st_ino = 12583125
-    st_mode = 0100664
-    st_nlink = 1
-    st_uid = 1187498
-    st_gid = 1002
-    st_rdev = 0
-    st_size = 559
-    st_blksize = 4096
-    st_blocks = 8
-    st_atime = 0x5d6fd2cf
-    st_mtime = 0x5d6fd2cd
-    st_ctime = 0x5d6fd2cd
-
-bb_getattr(path="/testTweakfs", statbuf=0x5e81ac30)
-    bb_fullpath:  rootdir = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/testdir", path = "/testTweakfs", fpath = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/testdir/testTweakfs"
-    lstat returned 0
-    si:
-    st_dev = 64770
-    st_ino = 12583121
-    st_mode = 0100775
-    st_nlink = 1
-    st_uid = 1187498
-    st_gid = 1002
-    st_rdev = 0
-    st_size = 8584
-    st_blksize = 4096
-    st_blocks = 24
-    st_atime = 0x5d6fd2ed
-    st_mtime = 0x5d6fd2cf
-    st_ctime = 0x5d6fd2cf
-comes in buddy condition jump!
-
-bb_releasedir(path="/", fi=0x5e81ac30)
-    fi:
-    flags = 0x00000000
-    fh_old = 0x7fe95800a6a0
-    writepage = 0
-    direct_io = 0
-    keep_cache = 0
-    fh = 0x00007fe95800a6a0
-    lock_owner = 0x0000000000000000
-
-bb_opendir(path="/", fi=0x5e019c20)
-    bb_fullpath:  rootdir = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/testdir", path = "/", fpath = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/testdir/"
-    opendir returned 0x0x7fe950001450
-    fi:
-    flags = 0x00018800
-    fh_old = 0x00000000
-    writepage = 0
-    direct_io = 0
-    keep_cache = 0
-    fh = 0x00007fe950001450
-    lock_owner = 0x0000000000000000
-
-bb_getattr(path="/", statbuf=0x5d818c00)
-    bb_fullpath:  rootdir = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/testdir", path = "/", fpath = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/testdir/"
-    lstat returned 0
-    si:
-    st_dev = 64770
-    st_ino = 12583116
-    st_mode = 040775
-    st_nlink = 2
-    st_uid = 1187498
-    st_gid = 1002
-    st_rdev = 0
-    st_size = 87
-    st_blksize = 4096
-    st_blocks = 0
-    st_atime = 0x5d6fd2d7
-    st_mtime = 0x5d6fd2cf
-    st_ctime = 0x5d6fd2cf
-
-bb_readdir(path="/", buf=0x500013d0, filler=0x5f037d00, offset=0, fi=0x5e81ac20)
-    readdir returned 0x0x7fe950001480
-calling filler with name .
-calling filler with name ..
-calling filler with name newFile.txt
-calling filler with name testTweakfs.c~
-calling filler with name testTweakfs.c
-calling filler with name testTweakfs
-calling filler with name buddy.txt
-    fi:
-    flags = 0x00000000
-    fh_old = 0x7fe950001450
-    writepage = 0
-    direct_io = 0
-    keep_cache = 0
-    fh = 0x00007fe950001450
-    lock_owner = 0x0000000000000000
-
-bb_getattr(path="/newFile.txt", statbuf=0x5e019c30)
-    bb_fullpath:  rootdir = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/testdir", path = "/newFile.txt", fpath = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/testdir/newFile.txt"
-    lstat returned 0
-    si:
-    st_dev = 64770
-    st_ino = 12583123
-    st_mode = 0100664
-    st_nlink = 1
-    st_uid = 1187498
-    st_gid = 1002
-    st_rdev = 0
-    st_size = 23
-    st_blksize = 4096
-    st_blocks = 8
-    st_atime = 0x5d6f38b9
-    st_mtime = 0x5d6f2c41
-    st_ctime = 0x5d6f2c41
-
-bb_getattr(path="/testTweakfs.c~", statbuf=0x5d818c30)
-    bb_fullpath:  rootdir = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/testdir", path = "/testTweakfs.c~", fpath = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/testdir/testTweakfs.c~"
-    lstat returned 0
-    si:
-    st_dev = 64770
-    st_ino = 12583124
-    st_mode = 0100664
-    st_nlink = 1
-    st_uid = 1187498
-    st_gid = 1002
-    st_rdev = 0
-    st_size = 530
-    st_blksize = 4096
-    st_blocks = 8
-    st_atime = 0x5d6fcfc0
-    st_mtime = 0x5d6fcfad
-    st_ctime = 0x5d6fd2cd
-
-bb_getattr(path="/testTweakfs.c", statbuf=0x5e81ac30)
-    bb_fullpath:  rootdir = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/testdir", path = "/testTweakfs.c", fpath = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/testdir/testTweakfs.c"
-    lstat returned 0
-    si:
-    st_dev = 64770
-    st_ino = 12583125
-    st_mode = 0100664
-    st_nlink = 1
-    st_uid = 1187498
-    st_gid = 1002
-    st_rdev = 0
-    st_size = 559
-    st_blksize = 4096
-    st_blocks = 8
-    st_atime = 0x5d6fd2cf
-    st_mtime = 0x5d6fd2cd
-    st_ctime = 0x5d6fd2cd
-
-bb_getattr(path="/testTweakfs", statbuf=0x5e019c30)
-    bb_fullpath:  rootdir = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/testdir", path = "/testTweakfs", fpath = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/testdir/testTweakfs"
-    lstat returned 0
-    si:
-    st_dev = 64770
-    st_ino = 12583121
-    st_mode = 0100775
-    st_nlink = 1
-    st_uid = 1187498
-    st_gid = 1002
-    st_rdev = 0
-    st_size = 8584
-    st_blksize = 4096
-    st_blocks = 24
-    st_atime = 0x5d6fd2ed
-    st_mtime = 0x5d6fd2cf
-    st_ctime = 0x5d6fd2cf
-comes in buddy condition jump!
-
-bb_releasedir(path="/", fi=0x5e019c30)
-    fi:
-    flags = 0x00000000
-    fh_old = 0x7fe950001450
-    writepage = 0
-    direct_io = 0
-    keep_cache = 0
-    fh = 0x00007fe950001450
-    lock_owner = 0x0000000000000000
-
-bb_getattr(path="/", statbuf=0x5d818c00)
-    bb_fullpath:  rootdir = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/testdir", path = "/", fpath = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/testdir/"
-    lstat returned 0
-    si:
-    st_dev = 64770
-    st_ino = 12583116
-    st_mode = 040775
-    st_nlink = 2
-    st_uid = 1187498
-    st_gid = 1002
-    st_rdev = 0
-    st_size = 87
-    st_blksize = 4096
-    st_blocks = 0
-    st_atime = 0x5d6fd2d7
-    st_mtime = 0x5d6fd2cf
-    st_ctime = 0x5d6fd2cf
-
-bb_getattr(path="/.git", statbuf=0x5e81ac30)
-    bb_fullpath:  rootdir = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/testdir", path = "/.git", fpath = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/testdir/.git"
-    lstat returned -1
-    ERROR lstat: No such file or directory
-    si:
-    st_dev = 0
-    st_ino = 0
-    st_mode = 00
-    st_nlink = 0
-    st_uid = 0
-    st_gid = 0
-    st_rdev = 0
-    st_size = 0
-    st_blksize = 0
-    st_blocks = 0
-    st_atime = 0x00000000
-    st_mtime = 0x00000000
-    st_ctime = 0x00000000
-
-bb_getattr(path="/.git", statbuf=0x5e019c30)
-    bb_fullpath:  rootdir = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/testdir", path = "/.git", fpath = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/testdir/.git"
-    lstat returned -1
-    ERROR lstat: No such file or directory
-    si:
-    st_dev = 0
-    st_ino = 0
-    st_mode = 00
-    st_nlink = 0
-    st_uid = 0
-    st_gid = 0
-    st_rdev = 0
-    st_size = 0
-    st_blksize = 0
-    st_blocks = 0
-    st_atime = 0x00000000
-    st_mtime = 0x00000000
-    st_ctime = 0x00000000
-
-bb_opendir(path="/", fi=0x5d818c20)
-    bb_fullpath:  rootdir = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/testdir", path = "/", fpath = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/testdir/"
-    opendir returned 0x0x7fe9540017e0
-    fi:
-    flags = 0x00018800
-    fh_old = 0x00000000
-    writepage = 0
-    direct_io = 0
-    keep_cache = 0
-    fh = 0x00007fe9540017e0
-    lock_owner = 0x0000000000000000
-
-bb_getattr(path="/", statbuf=0x5e81ac00)
-    bb_fullpath:  rootdir = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/testdir", path = "/", fpath = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/testdir/"
-    lstat returned 0
-    si:
-    st_dev = 64770
-    st_ino = 12583116
-    st_mode = 040775
-    st_nlink = 2
-    st_uid = 1187498
-    st_gid = 1002
-    st_rdev = 0
-    st_size = 87
-    st_blksize = 4096
-    st_blocks = 0
-    st_atime = 0x5d6fd2d7
-    st_mtime = 0x5d6fd2cf
-    st_ctime = 0x5d6fd2cf
-
-bb_readdir(path="/", buf=0x54001760, filler=0x5f037d00, offset=0, fi=0x5e019c20)
-    readdir returned 0x0x7fe954001810
-calling filler with name .
-calling filler with name ..
-calling filler with name newFile.txt
-calling filler with name testTweakfs.c~
-calling filler with name testTweakfs.c
-calling filler with name testTweakfs
-calling filler with name buddy.txt
-    fi:
-    flags = 0x00000000
-    fh_old = 0x7fe9540017e0
-    writepage = 0
-    direct_io = 0
-    keep_cache = 0
-    fh = 0x00007fe9540017e0
-    lock_owner = 0x0000000000000000
-
-bb_getattr(path="/newFile.txt", statbuf=0x5d818c30)
-    bb_fullpath:  rootdir = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/testdir", path = "/newFile.txt", fpath = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/testdir/newFile.txt"
-    lstat returned 0
-    si:
-    st_dev = 64770
-    st_ino = 12583123
-    st_mode = 0100664
-    st_nlink = 1
-    st_uid = 1187498
-    st_gid = 1002
-    st_rdev = 0
-    st_size = 23
-    st_blksize = 4096
-    st_blocks = 8
-    st_atime = 0x5d6f38b9
-    st_mtime = 0x5d6f2c41
-    st_ctime = 0x5d6f2c41
-
-bb_getattr(path="/.gitignore", statbuf=0x5e81ac30)
-    bb_fullpath:  rootdir = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/testdir", path = "/.gitignore", fpath = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/testdir/.gitignore"
-    lstat returned -1
-    ERROR lstat: No such file or directory
-    si:
-    st_dev = 0
-    st_ino = 0
-    st_mode = 00
-    st_nlink = 0
-    st_uid = 0
-    st_gid = 0
-    st_rdev = 0
-    st_size = 0
-    st_blksize = 0
-    st_blocks = 0
-    st_atime = 0x00000000
-    st_mtime = 0x00000000
-    st_ctime = 0x00000000
-
-bb_getattr(path="/testTweakfs.c~", statbuf=0x5e019c30)
-    bb_fullpath:  rootdir = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/testdir", path = "/testTweakfs.c~", fpath = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/testdir/testTweakfs.c~"
-    lstat returned 0
-    si:
-    st_dev = 64770
-    st_ino = 12583124
-    st_mode = 0100664
-    st_nlink = 1
-    st_uid = 1187498
-    st_gid = 1002
-    st_rdev = 0
-    st_size = 530
-    st_blksize = 4096
-    st_blocks = 8
-    st_atime = 0x5d6fcfc0
-    st_mtime = 0x5d6fcfad
-    st_ctime = 0x5d6fd2cd
-
-bb_getattr(path="/testTweakfs.c", statbuf=0x5d818c30)
-    bb_fullpath:  rootdir = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/testdir", path = "/testTweakfs.c", fpath = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/testdir/testTweakfs.c"
-    lstat returned 0
-    si:
-    st_dev = 64770
-    st_ino = 12583125
-    st_mode = 0100664
-    st_nlink = 1
-    st_uid = 1187498
-    st_gid = 1002
-    st_rdev = 0
-    st_size = 559
-    st_blksize = 4096
-    st_blocks = 8
-    st_atime = 0x5d6fd2cf
-    st_mtime = 0x5d6fd2cd
-    st_ctime = 0x5d6fd2cd
-
-bb_getattr(path="/testTweakfs", statbuf=0x5e81ac30)
-    bb_fullpath:  rootdir = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/testdir", path = "/testTweakfs", fpath = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/testdir/testTweakfs"
-    lstat returned 0
-    si:
-    st_dev = 64770
-    st_ino = 12583121
-    st_mode = 0100775
-    st_nlink = 1
-    st_uid = 1187498
-    st_gid = 1002
-    st_rdev = 0
-    st_size = 8584
-    st_blksize = 4096
-    st_blocks = 24
-    st_atime = 0x5d6fd2ed
-    st_mtime = 0x5d6fd2cf
-    st_ctime = 0x5d6fd2cf
-comes in buddy condition jump!
-
-bb_releasedir(path="/", fi=0x5e81ac30)
-    fi:
-    flags = 0x00000000
-    fh_old = 0x7fe9540017e0
-    writepage = 0
-    direct_io = 0
-    keep_cache = 0
-    fh = 0x00007fe9540017e0
-    lock_owner = 0x0000000000000000
+    pread returned 8632
 you come to bb_open!
 path is: /buddy.txt
 
-bb_open(path"/buddy.txt", fi=0x5e019ce0)
-    bb_fullpath:  rootdir = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/testdir", path = "/buddy.txt", fpath = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/testdir/buddy.txt"
-    open returned -1
-    ERROR open: No such file or directory
-    ERROR open: No such file or directory
+bb_read(path="/buddy.txt", buf=0x44001540, size=4096, offset=0, fi=0x4d278ce0)
+
+bb_fgetattr(path="/buddy.txt", statbuf=0x4e27ac00, fi=0x4e27ace0)
+    fi:
+    flags = 0x00000000
+    fh_old = 0x00000000
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x0000000000000000
+    lock_owner = 0x0000000000000000
+    si:
+    st_dev = 6
+    st_ino = 6
+    st_mode = 020666
+    st_nlink = 1
+    st_uid = 0
+    st_gid = 0
+    st_rdev = 259
+    st_size = 0
+    st_blksize = 4096
+    st_blocks = 0
+    st_atime = 0x5d6f1724
+    st_mtime = 0x5d6f1724
+    st_ctime = 0x5d6f1724
+
+bb_release(path="/buddy.txt", fi=0x4da79ce0)
     fi:
     flags = 0x00008000
     fh_old = 0x00000000
     writepage = 0
     direct_io = 0
     keep_cache = 0
-    fh = 0xfffffffffffffffe
+    fh = 0x0000000000000000
     lock_owner = 0x0000000000000000
 
-bb_destroy(userdata=0xc85a0260)
+bb_release(path="/testTweakfs", fi=0x4da79ce0)
+    fi:
+    flags = 0x00008020
+    fh_old = 0x00000005
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x0000000000000005
+    lock_owner = 0x0000000000000000
+    close returned 0
+
+bb_getattr(path="/", statbuf=0x4e27ac00)
+    bb_fullpath:  rootdir = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/testdir", path = "/", fpath = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/testdir/"
+    lstat returned 0
+    si:
+    st_dev = 64770
+    st_ino = 12583116
+    st_mode = 040775
+    st_nlink = 2
+    st_uid = 1187498
+    st_gid = 1002
+    st_rdev = 0
+    st_size = 123
+    st_blksize = 4096
+    st_blocks = 0
+    st_atime = 0x5d70a063
+    st_mtime = 0x5d70a061
+    st_ctime = 0x5d70a061
+
+bb_destroy(userdata=0x0005a260)
