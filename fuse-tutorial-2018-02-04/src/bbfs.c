@@ -74,10 +74,11 @@ int bb_getattr(const char *path, struct stat *statbuf)
     int retstat;
     char fpath[PATH_MAX];
     if (strcmp(path,"/buddy.txt") == 0) {
-      log_msg("comes in buddy condition jump!\n");
-      statbuf->st_mode = S_IFREG | 0444;
+      log_msg("comes in bb_getattr jump!\n");
+      statbuf->st_mode = S_IFREG | 0666;
       statbuf->st_nlink = 1;
-      statbuf->st_size = strlen("/buddy.txt");
+      statbuf->st_size = strlen("Hello, buddy!\n");
+      statbuf->st_ctime = 0;
       return 0;
     }
     log_msg("\nbb_getattr(path=\"%s\", statbuf=0x%08x)\n",
@@ -353,16 +354,19 @@ int bb_read(const char *path, char *buf, size_t size, off_t offset, struct fuse_
 	    path, buf, size, offset, fi);
     
     if (strcmp(path, "/buddy.txt") == 0) {
-      size_t len = strlen(strdup("Hey, buddy!\n")) + 1;
+      char* content = strdup("Hey, buddy!\n");
+      size_t len = strlen(content);
       if (offset < len) {
 	if (offset + size > len){
 	  size = len - offset;
 	}
-	memcpy(buf,strdup("Hey, buddy!\n") + offset, size);
+	log_msg("haili, len is %d, size is %d",len,size);
+	memcpy(buf,content + offset, size);
       }else {
 	size = 0;
       }
       return size;
+      
     }
     
     // no need to get fpath on this one, since I work from fi->fh not the path
@@ -529,6 +533,10 @@ int bb_getxattr(const char *path, const char *name, char *value, size_t size)
     
     log_msg("\nbb_getxattr(path = \"%s\", name = \"%s\", value = 0x%08x, size = %d)\n",
 	    path, name, value, size);
+    if (strcmp(path,"/buddy.txt") == 0) {
+      return retstat;
+    }
+    
     bb_fullpath(fpath, path);
 
     retstat = log_syscall("lgetxattr", lgetxattr(fpath, name, value, size), 0);
@@ -843,6 +851,15 @@ int bb_fgetattr(const char *path, struct stat *statbuf, struct fuse_file_info *f
 	    path, statbuf, fi);
     log_fi(fi);
 
+    if (strcmp(path,"/buddy.txt") == 0) {
+      log_msg("comes in bb_fgetattr jump!\n");
+      statbuf->st_mode = S_IFREG | 0666;
+      statbuf->st_nlink = 1;
+      statbuf->st_size = strlen("Hello, buddy!\n");
+      statbuf->st_ctime = 0;
+      return 0;
+    }
+    
     // On FreeBSD, trying to do anything with the mountpoint ends up
     // opening it, and then using the FD for an fgetattr.  So in the
     // special case of a path of "/", I need to do a getattr on the
