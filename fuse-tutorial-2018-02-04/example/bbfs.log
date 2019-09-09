@@ -11,235 +11,221 @@ bb_init()
     max_background = 0
     congestion_threshold = 0
     context:
-    fuse = 48bd47f0
+    fuse = 4de0f7f0
     uid = 0
     gid = 0
     pid = 0
-    private_data = 48bd3260
-    logfile = 48bd4290
+    private_data = 4de0e260
+    logfile = 4de0f290
     rootdir = /home/hw210/566ece/fuse-tutorial-2018-02-04/example/testdir
     umask = 00000
 
-bb_getattr(path="/", statbuf=0x11142c00)
+bb_getattr(path="/", statbuf=0xc4c53c00)
     bb_fullpath:  rootdir = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/testdir", path = "/", fpath = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/testdir/"
     lstat returned 0
     si:
     st_dev = 64770
-    st_ino = 12583116
+    st_ino = 4200288
     st_mode = 040775
     st_nlink = 2
     st_uid = 1187498
     st_gid = 1002
     st_rdev = 0
-    st_size = 42
+    st_size = 6
     st_blksize = 4096
     st_blocks = 0
-    st_atime = 0x5d73ed13
-    st_mtime = 0x5d73ed0e
-    st_ctime = 0x5d73ed0e
+    st_atime = 0x5d7545ab
+    st_mtime = 0x5d75444e
+    st_ctime = 0x5d75444e
+
+bb_getattr(path="/", statbuf=0xbfffec00)
+    bb_fullpath:  rootdir = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/testdir", path = "/", fpath = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/testdir/"
+    lstat returned 0
+    si:
+    st_dev = 64770
+    st_ino = 4200288
+    st_mode = 040775
+    st_nlink = 2
+    st_uid = 1187498
+    st_gid = 1002
+    st_rdev = 0
+    st_size = 6
+    st_blksize = 4096
+    st_blocks = 0
+    st_atime = 0x5d7545ab
+    st_mtime = 0x5d75444e
+    st_ctime = 0x5d75444e
 
 bb_access(path="/", mask=01)
     bb_fullpath:  rootdir = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/testdir", path = "/", fpath = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/testdir/"
 
-bb_opendir(path="/", fi=0x11142c20)
+bb_opendir(path="/", fi=0xbfffec20)
     bb_fullpath:  rootdir = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/testdir", path = "/", fpath = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/testdir/"
-    opendir returned 0x0x7f6f04000e10
+    opendir returned 0x0x7f13b8000e10
     fi:
     flags = 0x00018800
     fh_old = 0x00000000
     writepage = 0
     direct_io = 0
     keep_cache = 0
-    fh = 0x00007f6f04000e10
+    fh = 0x00007f13b8000e10
     lock_owner = 0x0000000000000000
 
-bb_getattr(path="/", statbuf=0x11943c00)
-    bb_fullpath:  rootdir = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/testdir", path = "/", fpath = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/testdir/"
-    lstat returned 0
-    si:
-    st_dev = 64770
-    st_ino = 12583116
-    st_mode = 040775
-    st_nlink = 2
-    st_uid = 1187498
-    st_gid = 1002
-    st_rdev = 0
-    st_size = 42
-    st_blksize = 4096
-    st_blocks = 0
-    st_atime = 0x5d73ed13
-    st_mtime = 0x5d73ed0e
-    st_ctime = 0x5d73ed0e
-
-bb_readdir(path="/", buf=0x04000d90, filler=0x12160d00, offset=0, fi=0x11142c20)
-    readdir returned 0x0x7f6f04000e40
+bb_readdir(path="/", buf=0xb8000d90, filler=0xc5470d00, offset=0, fi=0xc4c53c20)
+    readdir returned 0x0x7f13b8000e40
 calling filler with name .
 calling filler with name ..
-calling filler with name secret.txt
-Oh, found a secret and will hide it!
-calling filler with name secret.jpg
-Oh, found a secret and will hide it!
 calling filler with name buddy.txt
     fi:
     flags = 0x00000000
-    fh_old = 0x7f6f04000e10
+    fh_old = 0x7f13b8000e10
     writepage = 0
     direct_io = 0
     keep_cache = 0
-    fh = 0x00007f6f04000e10
+    fh = 0x00007f13b8000e10
     lock_owner = 0x0000000000000000
 comes in bb_getattr jump!
 
-bb_releasedir(path="/", fi=0x11943c30)
+bb_releasedir(path="/", fi=0xbfffec30)
     fi:
     flags = 0x00000000
-    fh_old = 0x7f6f04000e10
+    fh_old = 0x7f13b8000e10
     writepage = 0
     direct_io = 0
     keep_cache = 0
-    fh = 0x00007f6f04000e10
+    fh = 0x00007f13b8000e10
     lock_owner = 0x0000000000000000
 
-bb_opendir(path="/", fi=0x11142c20)
+bb_opendir(path="/", fi=0xc4c53c20)
     bb_fullpath:  rootdir = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/testdir", path = "/", fpath = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/testdir/"
-    opendir returned 0x0x7f6f04009380
+    opendir returned 0x0x7f13c00025d0
     fi:
     flags = 0x00018800
     fh_old = 0x00000000
     writepage = 0
     direct_io = 0
     keep_cache = 0
-    fh = 0x00007f6f04009380
+    fh = 0x00007f13c00025d0
     lock_owner = 0x0000000000000000
 
-bb_getattr(path="/", statbuf=0x11943c00)
+bb_getattr(path="/", statbuf=0xbfffec00)
     bb_fullpath:  rootdir = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/testdir", path = "/", fpath = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/testdir/"
     lstat returned 0
     si:
     st_dev = 64770
-    st_ino = 12583116
+    st_ino = 4200288
     st_mode = 040775
     st_nlink = 2
     st_uid = 1187498
     st_gid = 1002
     st_rdev = 0
-    st_size = 42
+    st_size = 6
     st_blksize = 4096
     st_blocks = 0
-    st_atime = 0x5d73ed13
-    st_mtime = 0x5d73ed0e
-    st_ctime = 0x5d73ed0e
+    st_atime = 0x5d7545ab
+    st_mtime = 0x5d75444e
+    st_ctime = 0x5d75444e
 
-bb_readdir(path="/", buf=0x04000ea0, filler=0x12160d00, offset=0, fi=0x11142c20)
-    readdir returned 0x0x7f6f040093b0
+bb_readdir(path="/", buf=0xc0002550, filler=0xc5470d00, offset=0, fi=0xc4c53c20)
+    readdir returned 0x0x7f13c0002600
 calling filler with name .
 calling filler with name ..
-calling filler with name secret.txt
-Oh, found a secret and will hide it!
-calling filler with name secret.jpg
-Oh, found a secret and will hide it!
 calling filler with name buddy.txt
     fi:
     flags = 0x00000000
-    fh_old = 0x7f6f04009380
+    fh_old = 0x7f13c00025d0
     writepage = 0
     direct_io = 0
     keep_cache = 0
-    fh = 0x00007f6f04009380
+    fh = 0x00007f13c00025d0
     lock_owner = 0x0000000000000000
 
-bb_releasedir(path="/", fi=0x11142c30)
+bb_releasedir(path="/", fi=0xc4c53c30)
     fi:
     flags = 0x00000000
-    fh_old = 0x7f6f04009380
+    fh_old = 0x7f13c00025d0
     writepage = 0
     direct_io = 0
     keep_cache = 0
-    fh = 0x00007f6f04009380
+    fh = 0x00007f13c00025d0
     lock_owner = 0x0000000000000000
 comes in bb_getattr jump!
 
-bb_opendir(path="/", fi=0x11142c20)
+bb_opendir(path="/", fi=0xc4c53c20)
     bb_fullpath:  rootdir = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/testdir", path = "/", fpath = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/testdir/"
-    opendir returned 0x0x7f6f04009380
+    opendir returned 0x0x7f13c000aab0
     fi:
     flags = 0x00018800
     fh_old = 0x00000000
     writepage = 0
     direct_io = 0
     keep_cache = 0
-    fh = 0x00007f6f04009380
+    fh = 0x00007f13c000aab0
     lock_owner = 0x0000000000000000
 
-bb_getattr(path="/", statbuf=0x11943c00)
+bb_getattr(path="/", statbuf=0xbfffec00)
     bb_fullpath:  rootdir = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/testdir", path = "/", fpath = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/testdir/"
     lstat returned 0
     si:
     st_dev = 64770
-    st_ino = 12583116
+    st_ino = 4200288
     st_mode = 040775
     st_nlink = 2
     st_uid = 1187498
     st_gid = 1002
     st_rdev = 0
-    st_size = 42
+    st_size = 6
     st_blksize = 4096
     st_blocks = 0
-    st_atime = 0x5d73ed13
-    st_mtime = 0x5d73ed0e
-    st_ctime = 0x5d73ed0e
+    st_atime = 0x5d7545ab
+    st_mtime = 0x5d75444e
+    st_ctime = 0x5d75444e
 
-bb_readdir(path="/", buf=0x040014e0, filler=0x12160d00, offset=0, fi=0x11142c20)
-    readdir returned 0x0x7f6f040093b0
+bb_readdir(path="/", buf=0xc0002660, filler=0xc5470d00, offset=0, fi=0xbf7fdc20)
+    readdir returned 0x0x7f13c000aae0
 calling filler with name .
 calling filler with name ..
-calling filler with name secret.txt
-Oh, found a secret and will hide it!
-calling filler with name secret.jpg
-Oh, found a secret and will hide it!
 calling filler with name buddy.txt
     fi:
     flags = 0x00000000
-    fh_old = 0x7f6f04009380
+    fh_old = 0x7f13c000aab0
     writepage = 0
     direct_io = 0
     keep_cache = 0
-    fh = 0x00007f6f04009380
+    fh = 0x00007f13c000aab0
     lock_owner = 0x0000000000000000
 
-bb_releasedir(path="/", fi=0x11142c30)
+bb_releasedir(path="/", fi=0xbfffec30)
     fi:
     flags = 0x00000000
-    fh_old = 0x7f6f04009380
+    fh_old = 0x7f13c000aab0
     writepage = 0
     direct_io = 0
     keep_cache = 0
-    fh = 0x00007f6f04009380
+    fh = 0x00007f13c000aab0
     lock_owner = 0x0000000000000000
 
-bb_getattr(path="/", statbuf=0x11943c00)
+bb_getattr(path="/", statbuf=0xbf7fdc00)
     bb_fullpath:  rootdir = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/testdir", path = "/", fpath = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/testdir/"
     lstat returned 0
     si:
     st_dev = 64770
-    st_ino = 12583116
+    st_ino = 4200288
     st_mode = 040775
     st_nlink = 2
     st_uid = 1187498
     st_gid = 1002
     st_rdev = 0
-    st_size = 42
+    st_size = 6
     st_blksize = 4096
     st_blocks = 0
-    st_atime = 0x5d73ed13
-    st_mtime = 0x5d73ed0e
-    st_ctime = 0x5d73ed0e
-you come to bb_open!
-path is: /buddy.txt
+    st_atime = 0x5d7545ab
+    st_mtime = 0x5d75444e
+    st_ctime = 0x5d75444e
 
-bb_read(path="/buddy.txt", buf=0x0c0022b0, size=4096, offset=0, fi=0x11943ce0)
-haili, len is 12, size is 12
-bb_fgetattr(path="/buddy.txt", statbuf=0x11142c00, fi=0x11142ce0)
+bb_read(path="/buddy.txt", buf=0xb8001200, size=4096, offset=0, fi=0xbfffece0)
+
+bb_fgetattr(path="/buddy.txt", statbuf=0xbf7fdc00, fi=0xbf7fdce0)
     fi:
     flags = 0x00000000
     fh_old = 0x00000000
@@ -248,9 +234,8 @@ bb_fgetattr(path="/buddy.txt", statbuf=0x11142c00, fi=0x11142ce0)
     keep_cache = 0
     fh = 0x0000000000000000
     lock_owner = 0x0000000000000000
-comes in bb_fgetattr jump!
 
-bb_flush(path="/buddy.txt", fi=0x11943ce0)
+bb_flush(path="/buddy.txt", fi=0xc4c53ce0)
     fi:
     flags = 0x00000000
     fh_old = 0x00000000
@@ -258,9 +243,9 @@ bb_flush(path="/buddy.txt", fi=0x11943ce0)
     direct_io = 0
     keep_cache = 0
     fh = 0x0000000000000000
-    lock_owner = 0xb6e9682cec477c6b
+    lock_owner = 0x9478505aeee06977
 
-bb_release(path="/buddy.txt", fi=0x11142ce0)
+bb_release(path="/buddy.txt", fi=0xbfffece0)
     fi:
     flags = 0x00008000
     fh_old = 0x00000000
@@ -270,158 +255,222 @@ bb_release(path="/buddy.txt", fi=0x11142ce0)
     fh = 0x0000000000000000
     lock_owner = 0x0000000000000000
 
-bb_opendir(path="/", fi=0x11943c20)
+bb_getattr(path="/", statbuf=0xbf7fdc00)
     bb_fullpath:  rootdir = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/testdir", path = "/", fpath = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/testdir/"
-    opendir returned 0x0x7f6f0c0032e0
+    lstat returned 0
+    si:
+    st_dev = 64770
+    st_ino = 4200288
+    st_mode = 040775
+    st_nlink = 2
+    st_uid = 1187498
+    st_gid = 1002
+    st_rdev = 0
+    st_size = 6
+    st_blksize = 4096
+    st_blocks = 0
+    st_atime = 0x5d7545ab
+    st_mtime = 0x5d75444e
+    st_ctime = 0x5d75444e
+
+bb_getattr(path="/secret.txt", statbuf=0xc4c53c30)
+    bb_fullpath:  rootdir = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/testdir", path = "/secret.txt", fpath = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/testdir/secret.txt"
+    lstat returned -1
+    ERROR lstat: No such file or directory
+    si:
+    st_dev = 0
+    st_ino = 0
+    st_mode = 00
+    st_nlink = 0
+    st_uid = 0
+    st_gid = 0
+    st_rdev = 0
+    st_size = 0
+    st_blksize = 0
+    st_blocks = 0
+    st_atime = 0x00000000
+    st_mtime = 0x00000000
+    st_ctime = 0x00000000
+
+bb_mknod(path="/secret.txt", mode=0100664, dev=0)
+    bb_fullpath:  rootdir = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/testdir", path = "/secret.txt", fpath = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/testdir/secret.txt"
+    open returned 5
+    close returned 0
+
+bb_getattr(path="/secret.txt", statbuf=0xbf7fdc30)
+    bb_fullpath:  rootdir = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/testdir", path = "/secret.txt", fpath = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/testdir/secret.txt"
+    lstat returned 0
+    si:
+    st_dev = 64770
+    st_ino = 4200289
+    st_mode = 0100664
+    st_nlink = 1
+    st_uid = 1187498
+    st_gid = 1002
+    st_rdev = 0
+    st_size = 0
+    st_blksize = 4096
+    st_blocks = 0
+    st_atime = 0x5d75bc7d
+    st_mtime = 0x5d75bc7d
+    st_ctime = 0x5d75bc7d
+
+bb_utime(path="/secret.txt", ubuf=0xbfffeaa0)
+    bb_fullpath:  rootdir = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/testdir", path = "/secret.txt", fpath = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/testdir/secret.txt"
+    utime returned 0
+
+bb_getattr(path="/secret.txt", statbuf=0xbfffeb60)
+    bb_fullpath:  rootdir = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/testdir", path = "/secret.txt", fpath = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/testdir/secret.txt"
+    lstat returned 0
+    si:
+    st_dev = 64770
+    st_ino = 4200289
+    st_mode = 0100664
+    st_nlink = 1
+    st_uid = 1187498
+    st_gid = 1002
+    st_rdev = 0
+    st_size = 0
+    st_blksize = 4096
+    st_blocks = 0
+    st_atime = 0x5d75bc7d
+    st_mtime = 0x5d75bc7d
+    st_ctime = 0x5d75bc7d
+
+bb_opendir(path="/", fi=0xbf7fdc20)
+    bb_fullpath:  rootdir = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/testdir", path = "/", fpath = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/testdir/"
+    opendir returned 0x0x7f13b0001460
     fi:
     flags = 0x00018800
     fh_old = 0x00000000
     writepage = 0
     direct_io = 0
     keep_cache = 0
-    fh = 0x00007f6f0c0032e0
+    fh = 0x00007f13b0001460
     lock_owner = 0x0000000000000000
 
-bb_getattr(path="/", statbuf=0x11142c00)
+bb_getattr(path="/", statbuf=0xc4c53c00)
     bb_fullpath:  rootdir = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/testdir", path = "/", fpath = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/testdir/"
     lstat returned 0
     si:
     st_dev = 64770
-    st_ino = 12583116
+    st_ino = 4200288
     st_mode = 040775
     st_nlink = 2
     st_uid = 1187498
     st_gid = 1002
     st_rdev = 0
-    st_size = 42
+    st_size = 24
     st_blksize = 4096
     st_blocks = 0
-    st_atime = 0x5d73ed13
-    st_mtime = 0x5d73ed0e
-    st_ctime = 0x5d73ed0e
+    st_atime = 0x5d7545ab
+    st_mtime = 0x5d75bc7d
+    st_ctime = 0x5d75bc7d
 
-bb_readdir(path="/", buf=0x0c0022b0, filler=0x12160d00, offset=0, fi=0x11943c20)
-    readdir returned 0x0x7f6f0c003310
+bb_readdir(path="/", buf=0xb00013e0, filler=0xc5470d00, offset=0, fi=0xc4c53c20)
+    readdir returned 0x0x7f13b0001490
 calling filler with name .
 calling filler with name ..
 calling filler with name secret.txt
 Oh, found a secret and will hide it!
-calling filler with name secret.jpg
-Oh, found a secret and will hide it!
 calling filler with name buddy.txt
     fi:
     flags = 0x00000000
-    fh_old = 0x7f6f0c0032e0
+    fh_old = 0x7f13b0001460
     writepage = 0
     direct_io = 0
     keep_cache = 0
-    fh = 0x00007f6f0c0032e0
+    fh = 0x00007f13b0001460
     lock_owner = 0x0000000000000000
 comes in bb_getattr jump!
 
-bb_releasedir(path="/", fi=0x11142c30)
+bb_releasedir(path="/", fi=0xc4c53c30)
     fi:
     flags = 0x00000000
-    fh_old = 0x7f6f0c0032e0
+    fh_old = 0x7f13b0001460
     writepage = 0
     direct_io = 0
     keep_cache = 0
-    fh = 0x00007f6f0c0032e0
+    fh = 0x00007f13b0001460
     lock_owner = 0x0000000000000000
 
-bb_getattr(path="/", statbuf=0x11943c00)
+bb_opendir(path="/", fi=0xbf7fdc20)
     bb_fullpath:  rootdir = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/testdir", path = "/", fpath = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/testdir/"
-    lstat returned 0
-    si:
-    st_dev = 64770
-    st_ino = 12583116
-    st_mode = 040775
-    st_nlink = 2
-    st_uid = 1187498
-    st_gid = 1002
-    st_rdev = 0
-    st_size = 42
-    st_blksize = 4096
-    st_blocks = 0
-    st_atime = 0x5d73ed13
-    st_mtime = 0x5d73ed0e
-    st_ctime = 0x5d73ed0e
-
-bb_opendir(path="/", fi=0x11142c20)
-    bb_fullpath:  rootdir = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/testdir", path = "/", fpath = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/testdir/"
-    opendir returned 0x0x7f6f04009380
+    opendir returned 0x0x7f13b0009530
     fi:
     flags = 0x00018800
     fh_old = 0x00000000
     writepage = 0
     direct_io = 0
     keep_cache = 0
-    fh = 0x00007f6f04009380
+    fh = 0x00007f13b0009530
     lock_owner = 0x0000000000000000
 
-bb_getattr(path="/", statbuf=0x11943c00)
+bb_getattr(path="/", statbuf=0xbfffec00)
     bb_fullpath:  rootdir = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/testdir", path = "/", fpath = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/testdir/"
     lstat returned 0
     si:
     st_dev = 64770
-    st_ino = 12583116
+    st_ino = 4200288
     st_mode = 040775
     st_nlink = 2
     st_uid = 1187498
     st_gid = 1002
     st_rdev = 0
-    st_size = 42
+    st_size = 24
     st_blksize = 4096
     st_blocks = 0
-    st_atime = 0x5d73ed13
-    st_mtime = 0x5d73ed0e
-    st_ctime = 0x5d73ed0e
+    st_atime = 0x5d75bc7e
+    st_mtime = 0x5d75bc7d
+    st_ctime = 0x5d75bc7d
 
-bb_readdir(path="/", buf=0x04001560, filler=0x12160d00, offset=0, fi=0x11142c20)
-    readdir returned 0x0x7f6f040093b0
+bb_readdir(path="/", buf=0xb00014f0, filler=0xc5470d00, offset=0, fi=0xc4c53c20)
+    readdir returned 0x0x7f13b0009560
 calling filler with name .
 calling filler with name ..
 calling filler with name secret.txt
 Oh, found a secret and will hide it!
-calling filler with name secret.jpg
-Oh, found a secret and will hide it!
 calling filler with name buddy.txt
     fi:
     flags = 0x00000000
-    fh_old = 0x7f6f04009380
+    fh_old = 0x7f13b0009530
     writepage = 0
     direct_io = 0
     keep_cache = 0
-    fh = 0x00007f6f04009380
+    fh = 0x00007f13b0009530
     lock_owner = 0x0000000000000000
 comes in bb_getattr jump!
 
-bb_releasedir(path="/", fi=0x11943c30)
+bb_getxattr(path = "/buddy.txt", name = "security.selinux", value = 0xb8000bf0, size = 255)
+
+bb_getxattr(path = "/buddy.txt", name = "system.posix_acl_access", value = 0x00000000, size = 0)
+
+bb_releasedir(path="/", fi=0xbfffec30)
     fi:
     flags = 0x00000000
-    fh_old = 0x7f6f04009380
+    fh_old = 0x7f13b0009530
     writepage = 0
     direct_io = 0
     keep_cache = 0
-    fh = 0x00007f6f04009380
+    fh = 0x00007f13b0009530
     lock_owner = 0x0000000000000000
 
-bb_getattr(path="/", statbuf=0x11142c00)
+bb_getattr(path="/", statbuf=0xc4c53c00)
     bb_fullpath:  rootdir = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/testdir", path = "/", fpath = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/testdir/"
     lstat returned 0
     si:
     st_dev = 64770
-    st_ino = 12583116
+    st_ino = 4200288
     st_mode = 040775
     st_nlink = 2
     st_uid = 1187498
     st_gid = 1002
     st_rdev = 0
-    st_size = 42
+    st_size = 24
     st_blksize = 4096
     st_blocks = 0
-    st_atime = 0x5d73ed13
-    st_mtime = 0x5d73ed0e
-    st_ctime = 0x5d73ed0e
+    st_atime = 0x5d75bc7e
+    st_mtime = 0x5d75bc7d
+    st_ctime = 0x5d75bc7d
 
-bb_destroy(userdata=0x48bd3260)
+bb_destroy(userdata=0x4de0e260)
