@@ -43,7 +43,7 @@
 
 #include "log.h"
 
-
+struct stat sourceStatbuf;
 char *sourcedir;
 static void bb_fullpath(char fpath[PATH_MAX], const char *path)
 {
@@ -64,15 +64,12 @@ int bb_getattr(const char *path, struct stat *statbuf)
 		path, statbuf);
     bb_fullpath(fpath, path);
 
-    
-    log_msg("comes in bb_getattr: %s", fpath);
     memset(statbuf, 0, sizeof(struct stat));
     if (strstr(fpath, sourcedir) != NULL) {
       if (strstr(fpath,"/file1") != NULL) {
-	log_msg("go into getattr file1\n");
 	statbuf->st_mode = S_IFREG | 0666;
 	statbuf->st_nlink = 1;
-	statbuf->st_size = 1024;;
+	statbuf->st_size = sourceStatbuf.st_size / 2;
 	statbuf->st_ctime = 0;
 	statbuf->st_blocks = 4;
 	return 0;
@@ -81,7 +78,7 @@ int bb_getattr(const char *path, struct stat *statbuf)
       if (strstr(fpath, "/file2") != NULL) {
 	statbuf->st_mode = S_IFREG | 0666;
 	statbuf->st_nlink = 1;
-	statbuf->st_size = 1024;;
+	statbuf->st_size = sourceStatbuf.st_size - sourceStatbuf.st_size / 2;
 	statbuf->st_ctime = 0;
 	statbuf->st_blocks = 4;
 	return 0;
@@ -153,12 +150,11 @@ int bb_read(const char *path, char *buf, size_t size, off_t offset, struct fuse_
     log_fi(fi);
     char fpath[PATH_MAX];
     bb_fullpath(fpath,path);
+    
     if (strstr(fpath,"/file2") != NULL){
-      log_msg("someone wants to read in file2 !\n");
-      return log_syscall("pread", pread(fi->fh, buf, size, offset + 1024), 0);
+      return log_syscall("pread", pread(fi->fh, buf, size, offset + sourceStatbuf.st_size / 2), 0);
     }
     
-    // no need to get fpath on this one, since I work from fi->fh not the path
     return log_syscall("pread", pread(fi->fh, buf, size, offset), 0);
 }
 
@@ -174,12 +170,17 @@ int bb_write(const char *path, const char *buf, size_t size, off_t offset,
     log_msg("\nbb_write(path=\"%s\", buf=0x%08x, size=%d, offset=%lld, fi=0x%08x)\n",
 	    path, buf, size, offset, fi
 	    );
-    // no need to get fpath on this one, since I work from fi->fh not the path
+
     log_fi(fi);
+    printf("size in write is %ld\n",size);
+    if (size > sourceStatbuf.st_size / 2) {
+      printf("size in write is %ld\n",size);
+      return -1;
+    }
     
     if (strstr(fpath,strcat(sourcedirdup,"/file2")) != NULL){
       log_msg("someone wants to write in file1 !\n");
-      return log_syscall("pwrite", pwrite(fi->fh, buf, size, offset + 1024), 0);
+      return log_syscall("pwrite", pwrite(fi->fh, buf, size, offset + sourceStatbuf.st_size / 2), 0);
     }
 
 
@@ -329,7 +330,7 @@ int bb_fgetattr(const char *path, struct stat *statbuf, struct fuse_file_info *f
 	log_msg("go into getattr file1\n");
 	statbuf->st_mode = S_IFREG | 0666;
 	statbuf->st_nlink = 1;
-	statbuf->st_size = 1024;;
+	statbuf->st_size = sourceStatbuf.st_size / 2;
 	statbuf->st_ctime = 0;
 	statbuf->st_blocks = 4;
 	return 0;
@@ -338,7 +339,7 @@ int bb_fgetattr(const char *path, struct stat *statbuf, struct fuse_file_info *f
       if (strstr(fpath, "/file2") != NULL) {
 	statbuf->st_mode = S_IFREG | 0666;
 	statbuf->st_nlink = 1;
-	statbuf->st_size = 1024;;
+	statbuf->st_size = sourceStatbuf.st_size - sourceStatbuf.st_size / 2;
 	statbuf->st_ctime = 0;
 	statbuf->st_blocks = 4;
 	return 0;
@@ -380,19 +381,30 @@ int main(int argc, char *argv[])
 {
     int fuse_stat;
     struct bb_state *bb_data;
-    
-    sourcedir = strdup(argv[1]);
-    
     bb_data = malloc(sizeof(struct bb_state));
+
     if (bb_data == NULL) {
-	perror("main calloc");
-	abort();
+      perror("main calloc");
+      abort();
     }
     
     bb_data->rootdir = realpath(argv[argc-2], NULL);
     argv[argc-2] = argv[argc-1];
     argv[argc-1] = NULL;
     argc--;
+    
+    sourcedir = strdup(bb_data->rootdir);
+    printf("%s\n",sourcedir);
+    
+    memset(&sourceStatbuf, 0, sizeof(stat));
+    if (lstat(sourcedir,&sourceStatbuf) != 0) {
+      perror("Failed to get stat struct for source dir\n");
+    }
+    printf("image size is %ld\n",(off_t)sourceStatbuf.st_size);
+    
+
+    
+    
     
     bb_data->logfile = log_open();
     
