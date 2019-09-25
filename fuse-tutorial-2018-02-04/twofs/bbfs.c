@@ -172,19 +172,24 @@ int bb_write(const char *path, const char *buf, size_t size, off_t offset,
 	    );
 
     log_fi(fi);
-    printf("size in write is %ld\n",size);
-    if (size > sourceStatbuf.st_size / 2) {
-      printf("size in write is %ld\n",size);
-      return -1;
+    char * truncatedBuf;
+    int originalSize = size;
+    if ((strstr(path,"/file") != NULL) && (size > sourceStatbuf.st_size / 2)) {
+      size = (strcmp(path,"/file1") == 0)? sourceStatbuf.st_size/2 : (sourceStatbuf.st_size - sourceStatbuf.st_size/2);
+      truncatedBuf = malloc(size);
+      printf("truncate size to %ld\n",size);
+      
     }
-    
+    strncpy(truncatedBuf, buf, size);
     if (strstr(fpath,strcat(sourcedirdup,"/file2")) != NULL){
       log_msg("someone wants to write in file1 !\n");
-      return log_syscall("pwrite", pwrite(fi->fh, buf, size, offset + sourceStatbuf.st_size / 2), 0);
+      pwrite(fi->fh, truncatedBuf, size, offset + sourceStatbuf.st_size / 2);
+      return originalSize;
     }
 
 
-    return log_syscall("pwrite", pwrite(fi->fh, buf, size, offset), 0);
+    pwrite(fi->fh, truncatedBuf, size, offset);
+    return originalSize; 
 }
 
 /** Get file system statistics

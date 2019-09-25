@@ -1,476 +1,358 @@
 
-bb_init()
-    conn:
-    proto_major = 7
-    proto_minor = 26
-    async_read = 1
-    max_write = 131072
-    max_readahead = 131072
-    capable = 00000ffb
-    want = 00000010
-    max_background = 0
-    congestion_threshold = 0
-    context:
-    fuse = 4de0f7f0
-    uid = 0
-    gid = 0
-    pid = 0
-    private_data = 4de0e260
-    logfile = 4de0f290
-    rootdir = /home/hw210/566ece/fuse-tutorial-2018-02-04/example/testdir
-    umask = 00000
-
-bb_getattr(path="/", statbuf=0xc4c53c00)
-    bb_fullpath:  rootdir = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/testdir", path = "/", fpath = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/testdir/"
-    lstat returned 0
-    si:
-    st_dev = 64770
-    st_ino = 4200288
-    st_mode = 040775
-    st_nlink = 2
-    st_uid = 1187498
-    st_gid = 1002
-    st_rdev = 0
-    st_size = 6
-    st_blksize = 4096
-    st_blocks = 0
-    st_atime = 0x5d7545ab
-    st_mtime = 0x5d75444e
-    st_ctime = 0x5d75444e
-
-bb_getattr(path="/", statbuf=0xbfffec00)
-    bb_fullpath:  rootdir = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/testdir", path = "/", fpath = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/testdir/"
-    lstat returned 0
-    si:
-    st_dev = 64770
-    st_ino = 4200288
-    st_mode = 040775
-    st_nlink = 2
-    st_uid = 1187498
-    st_gid = 1002
-    st_rdev = 0
-    st_size = 6
-    st_blksize = 4096
-    st_blocks = 0
-    st_atime = 0x5d7545ab
-    st_mtime = 0x5d75444e
-    st_ctime = 0x5d75444e
+bb_getattr(path="/", statbuf=0x18899c00)
+    bb_fullpath:  rootdir = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/filesystem", path = "/", fpath = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/filesystem/"
 
 bb_access(path="/", mask=01)
-    bb_fullpath:  rootdir = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/testdir", path = "/", fpath = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/testdir/"
+    bb_fullpath:  rootdir = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/filesystem", path = "/", fpath = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/filesystem/"
 
-bb_opendir(path="/", fi=0xbfffec20)
-    bb_fullpath:  rootdir = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/testdir", path = "/", fpath = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/testdir/"
-    opendir returned 0x0x7f13b8000e10
+bb_getattr(path="/file1", statbuf=0x18899c30)
+    bb_fullpath:  rootdir = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/filesystem", path = "/file1", fpath = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/filesystem/file1"
+
+bb_open(path"/file1", fi=0x13ffece0)
+    bb_fullpath:  rootdir = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/filesystem", path = "/file1", fpath = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/filesystem/file1"
+open return fd is; 5
+
+bb_getxattr(path = "/file1", name = "security.capability", value = 0x00000000, size = 0)
+    bb_fullpath:  rootdir = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/filesystem", path = "/file1", fpath = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/filesystem/file1"
+
+bb_truncate(path="/file1", newsize=0)
+    bb_fullpath:  rootdir = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/filesystem", path = "/file1", fpath = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/filesystem/file1"
+
+bb_getattr(path="/file1", statbuf=0x13ffeb60)
+    bb_fullpath:  rootdir = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/filesystem", path = "/file1", fpath = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/filesystem/file1"
+
+bb_getxattr(path = "/file1", name = "security.capability", value = 0x00000000, size = 0)
+    bb_fullpath:  rootdir = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/filesystem", path = "/file1", fpath = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/filesystem/file1"
+    bb_fullpath:  rootdir = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/filesystem", path = "/file1", fpath = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/filesystem/file1"
+fd inside bb_write is 5
+
+bb_write(path="/file1", buf=0x194e5060, size=15, offset=0, fi=0x18899d50)
     fi:
-    flags = 0x00018800
-    fh_old = 0x00000000
+    flags = 0x00008001
+    fh_old = 0x00000005
     writepage = 0
     direct_io = 0
     keep_cache = 0
-    fh = 0x00007f13b8000e10
+    fh = 0x0000000000000005
     lock_owner = 0x0000000000000000
 
-bb_readdir(path="/", buf=0xb8000d90, filler=0xc5470d00, offset=0, fi=0xc4c53c20)
-    readdir returned 0x0x7f13b8000e40
-calling filler with name .
-calling filler with name ..
-calling filler with name buddy.txt
-    fi:
-    flags = 0x00000000
-    fh_old = 0x7f13b8000e10
-    writepage = 0
-    direct_io = 0
-    keep_cache = 0
-    fh = 0x00007f13b8000e10
-    lock_owner = 0x0000000000000000
-comes in bb_getattr jump!
+bb_getattr(path="/file1", statbuf=0x18899c30)
+    bb_fullpath:  rootdir = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/filesystem", path = "/file1", fpath = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/filesystem/file1"
 
-bb_releasedir(path="/", fi=0xbfffec30)
-    fi:
-    flags = 0x00000000
-    fh_old = 0x7f13b8000e10
-    writepage = 0
-    direct_io = 0
-    keep_cache = 0
-    fh = 0x00007f13b8000e10
-    lock_owner = 0x0000000000000000
+bb_open(path"/file1", fi=0x13ffece0)
+    bb_fullpath:  rootdir = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/filesystem", path = "/file1", fpath = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/filesystem/file1"
+open return fd is; 6
 
-bb_opendir(path="/", fi=0xc4c53c20)
-    bb_fullpath:  rootdir = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/testdir", path = "/", fpath = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/testdir/"
-    opendir returned 0x0x7f13c00025d0
+bb_getxattr(path = "/file1", name = "security.capability", value = 0x00000000, size = 0)
+    bb_fullpath:  rootdir = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/filesystem", path = "/file1", fpath = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/filesystem/file1"
+
+bb_truncate(path="/file1", newsize=0)
+    bb_fullpath:  rootdir = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/filesystem", path = "/file1", fpath = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/filesystem/file1"
+
+bb_getattr(path="/file1", statbuf=0x13ffeb60)
+    bb_fullpath:  rootdir = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/filesystem", path = "/file1", fpath = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/filesystem/file1"
+
+bb_getxattr(path = "/file1", name = "security.capability", value = 0x00000000, size = 0)
+    bb_fullpath:  rootdir = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/filesystem", path = "/file1", fpath = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/filesystem/file1"
+    bb_fullpath:  rootdir = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/filesystem", path = "/file1", fpath = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/filesystem/file1"
+fd inside bb_write is 6
+
+bb_write(path="/file1", buf=0x194c3060, size=15, offset=0, fi=0x13ffed50)
     fi:
-    flags = 0x00018800
-    fh_old = 0x00000000
+    flags = 0x00008001
+    fh_old = 0x00000006
     writepage = 0
     direct_io = 0
     keep_cache = 0
-    fh = 0x00007f13c00025d0
+    fh = 0x0000000000000006
     lock_owner = 0x0000000000000000
 
-bb_getattr(path="/", statbuf=0xbfffec00)
-    bb_fullpath:  rootdir = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/testdir", path = "/", fpath = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/testdir/"
-    lstat returned 0
-    si:
-    st_dev = 64770
-    st_ino = 4200288
-    st_mode = 040775
-    st_nlink = 2
-    st_uid = 1187498
-    st_gid = 1002
-    st_rdev = 0
-    st_size = 6
-    st_blksize = 4096
-    st_blocks = 0
-    st_atime = 0x5d7545ab
-    st_mtime = 0x5d75444e
-    st_ctime = 0x5d75444e
+bb_opendir(path="/", fi=0x13ffec20)
+    bb_fullpath:  rootdir = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/filesystem", path = "/", fpath = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/filesystem/"
 
-bb_readdir(path="/", buf=0xc0002550, filler=0xc5470d00, offset=0, fi=0xc4c53c20)
-    readdir returned 0x0x7f13c0002600
-calling filler with name .
-calling filler with name ..
-calling filler with name buddy.txt
-    fi:
-    flags = 0x00000000
-    fh_old = 0x7f13c00025d0
-    writepage = 0
-    direct_io = 0
-    keep_cache = 0
-    fh = 0x00007f13c00025d0
-    lock_owner = 0x0000000000000000
+bb_getattr(path="/", statbuf=0x18899c00)
+    bb_fullpath:  rootdir = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/filesystem", path = "/", fpath = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/filesystem/"
 
-bb_releasedir(path="/", fi=0xc4c53c30)
-    fi:
-    flags = 0x00000000
-    fh_old = 0x7f13c00025d0
-    writepage = 0
-    direct_io = 0
-    keep_cache = 0
-    fh = 0x00007f13c00025d0
-    lock_owner = 0x0000000000000000
-comes in bb_getattr jump!
+bb_readdir(path="/", buf=0x0c001250, filler=0x190b6d00, offset=0, fi=0x13ffec20)
+    bb_fullpath:  rootdir = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/filesystem", path = "/", fpath = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/filesystem/"
 
-bb_opendir(path="/", fi=0xc4c53c20)
-    bb_fullpath:  rootdir = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/testdir", path = "/", fpath = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/testdir/"
-    opendir returned 0x0x7f13c000aab0
-    fi:
-    flags = 0x00018800
-    fh_old = 0x00000000
-    writepage = 0
-    direct_io = 0
-    keep_cache = 0
-    fh = 0x00007f13c000aab0
-    lock_owner = 0x0000000000000000
+bb_getattr(path="/file1", statbuf=0x18899c30)
+    bb_fullpath:  rootdir = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/filesystem", path = "/file1", fpath = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/filesystem/file1"
 
-bb_getattr(path="/", statbuf=0xbfffec00)
-    bb_fullpath:  rootdir = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/testdir", path = "/", fpath = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/testdir/"
-    lstat returned 0
-    si:
-    st_dev = 64770
-    st_ino = 4200288
-    st_mode = 040775
-    st_nlink = 2
-    st_uid = 1187498
-    st_gid = 1002
-    st_rdev = 0
-    st_size = 6
-    st_blksize = 4096
-    st_blocks = 0
-    st_atime = 0x5d7545ab
-    st_mtime = 0x5d75444e
-    st_ctime = 0x5d75444e
+bb_getattr(path="/file2", statbuf=0x18899c30)
+    bb_fullpath:  rootdir = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/filesystem", path = "/file2", fpath = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/filesystem/file2"
 
-bb_readdir(path="/", buf=0xc0002660, filler=0xc5470d00, offset=0, fi=0xbf7fdc20)
-    readdir returned 0x0x7f13c000aae0
-calling filler with name .
-calling filler with name ..
-calling filler with name buddy.txt
-    fi:
-    flags = 0x00000000
-    fh_old = 0x7f13c000aab0
-    writepage = 0
-    direct_io = 0
-    keep_cache = 0
-    fh = 0x00007f13c000aab0
-    lock_owner = 0x0000000000000000
+bb_opendir(path="/", fi=0x13ffec20)
+    bb_fullpath:  rootdir = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/filesystem", path = "/", fpath = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/filesystem/"
 
-bb_releasedir(path="/", fi=0xbfffec30)
-    fi:
-    flags = 0x00000000
-    fh_old = 0x7f13c000aab0
-    writepage = 0
-    direct_io = 0
-    keep_cache = 0
-    fh = 0x00007f13c000aab0
-    lock_owner = 0x0000000000000000
+bb_getattr(path="/", statbuf=0x18899c00)
+    bb_fullpath:  rootdir = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/filesystem", path = "/", fpath = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/filesystem/"
 
-bb_getattr(path="/", statbuf=0xbf7fdc00)
-    bb_fullpath:  rootdir = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/testdir", path = "/", fpath = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/testdir/"
-    lstat returned 0
-    si:
-    st_dev = 64770
-    st_ino = 4200288
-    st_mode = 040775
-    st_nlink = 2
-    st_uid = 1187498
-    st_gid = 1002
-    st_rdev = 0
-    st_size = 6
-    st_blksize = 4096
-    st_blocks = 0
-    st_atime = 0x5d7545ab
-    st_mtime = 0x5d75444e
-    st_ctime = 0x5d75444e
+bb_readdir(path="/", buf=0x0c0016e0, filler=0x190b6d00, offset=0, fi=0x13ffec20)
+    bb_fullpath:  rootdir = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/filesystem", path = "/", fpath = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/filesystem/"
 
-bb_read(path="/buddy.txt", buf=0xb8001200, size=4096, offset=0, fi=0xbfffece0)
+bb_open(path"/file1", fi=0x18899ce0)
+    bb_fullpath:  rootdir = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/filesystem", path = "/file1", fpath = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/filesystem/file1"
+open return fd is; 7
 
-bb_fgetattr(path="/buddy.txt", statbuf=0xbf7fdc00, fi=0xbf7fdce0)
-    fi:
-    flags = 0x00000000
-    fh_old = 0x00000000
-    writepage = 0
-    direct_io = 0
-    keep_cache = 0
-    fh = 0x0000000000000000
-    lock_owner = 0x0000000000000000
-
-bb_flush(path="/buddy.txt", fi=0xc4c53ce0)
-    fi:
-    flags = 0x00000000
-    fh_old = 0x00000000
-    writepage = 0
-    direct_io = 0
-    keep_cache = 0
-    fh = 0x0000000000000000
-    lock_owner = 0x9478505aeee06977
-
-bb_release(path="/buddy.txt", fi=0xbfffece0)
+bb_read(path="/file1", buf=0x0c001bc0, size=4096, offset=0, fi=0x13ffece0)
     fi:
     flags = 0x00008000
-    fh_old = 0x00000000
+    fh_old = 0x00000007
     writepage = 0
     direct_io = 0
     keep_cache = 0
-    fh = 0x0000000000000000
+    fh = 0x0000000000000007
     lock_owner = 0x0000000000000000
+    bb_fullpath:  rootdir = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/filesystem", path = "/file1", fpath = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/filesystem/file1"
+    pread returned 20
 
-bb_getattr(path="/", statbuf=0xbf7fdc00)
-    bb_fullpath:  rootdir = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/testdir", path = "/", fpath = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/testdir/"
-    lstat returned 0
-    si:
-    st_dev = 64770
-    st_ino = 4200288
-    st_mode = 040775
-    st_nlink = 2
-    st_uid = 1187498
-    st_gid = 1002
-    st_rdev = 0
-    st_size = 6
-    st_blksize = 4096
-    st_blocks = 0
-    st_atime = 0x5d7545ab
-    st_mtime = 0x5d75444e
-    st_ctime = 0x5d75444e
-
-bb_getattr(path="/secret.txt", statbuf=0xc4c53c30)
-    bb_fullpath:  rootdir = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/testdir", path = "/secret.txt", fpath = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/testdir/secret.txt"
-    lstat returned -1
-    ERROR lstat: No such file or directory
-    si:
-    st_dev = 0
-    st_ino = 0
-    st_mode = 00
-    st_nlink = 0
-    st_uid = 0
-    st_gid = 0
-    st_rdev = 0
-    st_size = 0
-    st_blksize = 0
-    st_blocks = 0
-    st_atime = 0x00000000
-    st_mtime = 0x00000000
-    st_ctime = 0x00000000
-
-bb_mknod(path="/secret.txt", mode=0100664, dev=0)
-    bb_fullpath:  rootdir = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/testdir", path = "/secret.txt", fpath = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/testdir/secret.txt"
-    open returned 5
-    close returned 0
-
-bb_getattr(path="/secret.txt", statbuf=0xbf7fdc30)
-    bb_fullpath:  rootdir = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/testdir", path = "/secret.txt", fpath = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/testdir/secret.txt"
-    lstat returned 0
-    si:
-    st_dev = 64770
-    st_ino = 4200289
-    st_mode = 0100664
-    st_nlink = 1
-    st_uid = 1187498
-    st_gid = 1002
-    st_rdev = 0
-    st_size = 0
-    st_blksize = 4096
-    st_blocks = 0
-    st_atime = 0x5d75bc7d
-    st_mtime = 0x5d75bc7d
-    st_ctime = 0x5d75bc7d
-
-bb_utime(path="/secret.txt", ubuf=0xbfffeaa0)
-    bb_fullpath:  rootdir = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/testdir", path = "/secret.txt", fpath = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/testdir/secret.txt"
-    utime returned 0
-
-bb_getattr(path="/secret.txt", statbuf=0xbfffeb60)
-    bb_fullpath:  rootdir = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/testdir", path = "/secret.txt", fpath = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/testdir/secret.txt"
-    lstat returned 0
-    si:
-    st_dev = 64770
-    st_ino = 4200289
-    st_mode = 0100664
-    st_nlink = 1
-    st_uid = 1187498
-    st_gid = 1002
-    st_rdev = 0
-    st_size = 0
-    st_blksize = 4096
-    st_blocks = 0
-    st_atime = 0x5d75bc7d
-    st_mtime = 0x5d75bc7d
-    st_ctime = 0x5d75bc7d
-
-bb_opendir(path="/", fi=0xbf7fdc20)
-    bb_fullpath:  rootdir = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/testdir", path = "/", fpath = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/testdir/"
-    opendir returned 0x0x7f13b0001460
-    fi:
-    flags = 0x00018800
-    fh_old = 0x00000000
-    writepage = 0
-    direct_io = 0
-    keep_cache = 0
-    fh = 0x00007f13b0001460
-    lock_owner = 0x0000000000000000
-
-bb_getattr(path="/", statbuf=0xc4c53c00)
-    bb_fullpath:  rootdir = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/testdir", path = "/", fpath = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/testdir/"
-    lstat returned 0
-    si:
-    st_dev = 64770
-    st_ino = 4200288
-    st_mode = 040775
-    st_nlink = 2
-    st_uid = 1187498
-    st_gid = 1002
-    st_rdev = 0
-    st_size = 24
-    st_blksize = 4096
-    st_blocks = 0
-    st_atime = 0x5d7545ab
-    st_mtime = 0x5d75bc7d
-    st_ctime = 0x5d75bc7d
-
-bb_readdir(path="/", buf=0xb00013e0, filler=0xc5470d00, offset=0, fi=0xc4c53c20)
-    readdir returned 0x0x7f13b0001490
-calling filler with name .
-calling filler with name ..
-calling filler with name secret.txt
-Oh, found a secret and will hide it!
-calling filler with name buddy.txt
+bb_fgetattr(path="/file1", statbuf=0x18899c00, fi=0x18899ce0)
     fi:
     flags = 0x00000000
-    fh_old = 0x7f13b0001460
+    fh_old = 0x00000007
     writepage = 0
     direct_io = 0
     keep_cache = 0
-    fh = 0x00007f13b0001460
+    fh = 0x0000000000000007
     lock_owner = 0x0000000000000000
-comes in bb_getattr jump!
+    bb_fullpath:  rootdir = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/filesystem", path = "/file1", fpath = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/filesystem/file1"
+go into getattr file1
 
-bb_releasedir(path="/", fi=0xc4c53c30)
+bb_opendir(path="/", fi=0x18899c20)
+    bb_fullpath:  rootdir = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/filesystem", path = "/", fpath = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/filesystem/"
+
+bb_getattr(path="/", statbuf=0x13ffec00)
+    bb_fullpath:  rootdir = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/filesystem", path = "/", fpath = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/filesystem/"
+
+bb_readdir(path="/", buf=0x14002410, filler=0x190b6d00, offset=0, fi=0x18899c20)
+    bb_fullpath:  rootdir = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/filesystem", path = "/", fpath = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/filesystem/"
+
+bb_getattr(path="/file1", statbuf=0x18899c30)
+    bb_fullpath:  rootdir = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/filesystem", path = "/file1", fpath = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/filesystem/file1"
+
+bb_getattr(path="/file2", statbuf=0x18899c30)
+    bb_fullpath:  rootdir = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/filesystem", path = "/file2", fpath = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/filesystem/file2"
+
+bb_opendir(path="/", fi=0x13ffec20)
+    bb_fullpath:  rootdir = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/filesystem", path = "/", fpath = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/filesystem/"
+
+bb_getattr(path="/", statbuf=0x18899c00)
+    bb_fullpath:  rootdir = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/filesystem", path = "/", fpath = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/filesystem/"
+
+bb_readdir(path="/", buf=0x0c001bc0, filler=0x190b6d00, offset=0, fi=0x13ffec20)
+    bb_fullpath:  rootdir = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/filesystem", path = "/", fpath = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/filesystem/"
+
+bb_open(path"/file2", fi=0x18899ce0)
+    bb_fullpath:  rootdir = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/filesystem", path = "/file2", fpath = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/filesystem/file2"
+open return fd is; 8
+
+bb_read(path="/file2", buf=0x0c001c40, size=4096, offset=0, fi=0x13ffece0)
+    fi:
+    flags = 0x00008000
+    fh_old = 0x00000008
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x0000000000000008
+    lock_owner = 0x0000000000000000
+    bb_fullpath:  rootdir = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/filesystem", path = "/file2", fpath = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/filesystem/file2"
+    pread returned 10
+
+bb_fgetattr(path="/file2", statbuf=0x18899c00, fi=0x18899ce0)
     fi:
     flags = 0x00000000
-    fh_old = 0x7f13b0001460
+    fh_old = 0x00000008
     writepage = 0
     direct_io = 0
     keep_cache = 0
-    fh = 0x00007f13b0001460
+    fh = 0x0000000000000008
     lock_owner = 0x0000000000000000
+    bb_fullpath:  rootdir = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/filesystem", path = "/file2", fpath = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/filesystem/file2"
 
-bb_opendir(path="/", fi=0xbf7fdc20)
-    bb_fullpath:  rootdir = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/testdir", path = "/", fpath = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/testdir/"
-    opendir returned 0x0x7f13b0009530
+bb_opendir(path="/", fi=0x18899c20)
+    bb_fullpath:  rootdir = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/filesystem", path = "/", fpath = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/filesystem/"
+
+bb_getattr(path="/", statbuf=0x13ffec00)
+    bb_fullpath:  rootdir = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/filesystem", path = "/", fpath = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/filesystem/"
+
+bb_readdir(path="/", buf=0x14002530, filler=0x190b6d00, offset=0, fi=0x18899c20)
+    bb_fullpath:  rootdir = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/filesystem", path = "/", fpath = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/filesystem/"
+
+bb_getattr(path="/file1", statbuf=0x18899c30)
+    bb_fullpath:  rootdir = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/filesystem", path = "/file1", fpath = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/filesystem/file1"
+
+bb_getattr(path="/file2", statbuf=0x18899c30)
+    bb_fullpath:  rootdir = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/filesystem", path = "/file2", fpath = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/filesystem/file2"
+
+bb_opendir(path="/", fi=0x13ffec20)
+    bb_fullpath:  rootdir = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/filesystem", path = "/", fpath = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/filesystem/"
+
+bb_getattr(path="/", statbuf=0x18899c00)
+    bb_fullpath:  rootdir = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/filesystem", path = "/", fpath = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/filesystem/"
+
+bb_readdir(path="/", buf=0x0c001c40, filler=0x190b6d00, offset=0, fi=0x13ffec20)
+    bb_fullpath:  rootdir = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/filesystem", path = "/", fpath = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/filesystem/"
+
+bb_open(path"/file2", fi=0x18899ce0)
+    bb_fullpath:  rootdir = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/filesystem", path = "/file2", fpath = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/filesystem/file2"
+open return fd is; 9
+
+bb_getxattr(path = "/file2", name = "security.capability", value = 0x00000000, size = 0)
+    bb_fullpath:  rootdir = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/filesystem", path = "/file2", fpath = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/filesystem/file2"
+
+bb_truncate(path="/file2", newsize=0)
+    bb_fullpath:  rootdir = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/filesystem", path = "/file2", fpath = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/filesystem/file2"
+
+bb_getattr(path="/file2", statbuf=0x18899b60)
+    bb_fullpath:  rootdir = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/filesystem", path = "/file2", fpath = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/filesystem/file2"
+
+bb_getxattr(path = "/file2", name = "security.capability", value = 0x00000000, size = 0)
+    bb_fullpath:  rootdir = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/filesystem", path = "/file2", fpath = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/filesystem/file2"
+    bb_fullpath:  rootdir = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/filesystem", path = "/file2", fpath = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/filesystem/file2"
+fd inside bb_write is 9
+
+bb_write(path="/file2", buf=0x194e5060, size=12, offset=0, fi=0x18899d50)
     fi:
-    flags = 0x00018800
-    fh_old = 0x00000000
+    flags = 0x00008001
+    fh_old = 0x00000009
     writepage = 0
     direct_io = 0
     keep_cache = 0
-    fh = 0x00007f13b0009530
+    fh = 0x0000000000000009
     lock_owner = 0x0000000000000000
+someone wants to write in file1 !
 
-bb_getattr(path="/", statbuf=0xbfffec00)
-    bb_fullpath:  rootdir = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/testdir", path = "/", fpath = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/testdir/"
-    lstat returned 0
-    si:
-    st_dev = 64770
-    st_ino = 4200288
-    st_mode = 040775
-    st_nlink = 2
-    st_uid = 1187498
-    st_gid = 1002
-    st_rdev = 0
-    st_size = 24
-    st_blksize = 4096
-    st_blocks = 0
-    st_atime = 0x5d75bc7e
-    st_mtime = 0x5d75bc7d
-    st_ctime = 0x5d75bc7d
+bb_opendir(path="/", fi=0x18899c20)
+    bb_fullpath:  rootdir = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/filesystem", path = "/", fpath = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/filesystem/"
 
-bb_readdir(path="/", buf=0xb00014f0, filler=0xc5470d00, offset=0, fi=0xc4c53c20)
-    readdir returned 0x0x7f13b0009560
-calling filler with name .
-calling filler with name ..
-calling filler with name secret.txt
-Oh, found a secret and will hide it!
-calling filler with name buddy.txt
+bb_getattr(path="/", statbuf=0x13ffec00)
+    bb_fullpath:  rootdir = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/filesystem", path = "/", fpath = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/filesystem/"
+
+bb_readdir(path="/", buf=0x140026c0, filler=0x190b6d00, offset=0, fi=0x18899c20)
+    bb_fullpath:  rootdir = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/filesystem", path = "/", fpath = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/filesystem/"
+
+bb_getattr(path="/file1", statbuf=0x13ffec30)
+    bb_fullpath:  rootdir = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/filesystem", path = "/file1", fpath = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/filesystem/file1"
+
+bb_getattr(path="/file2", statbuf=0x18899c30)
+    bb_fullpath:  rootdir = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/filesystem", path = "/file2", fpath = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/filesystem/file2"
+
+bb_opendir(path="/", fi=0x13ffec20)
+    bb_fullpath:  rootdir = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/filesystem", path = "/", fpath = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/filesystem/"
+
+bb_getattr(path="/", statbuf=0x18899c00)
+    bb_fullpath:  rootdir = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/filesystem", path = "/", fpath = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/filesystem/"
+
+bb_readdir(path="/", buf=0x0c001d10, filler=0x190b6d00, offset=0, fi=0x13ffec20)
+    bb_fullpath:  rootdir = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/filesystem", path = "/", fpath = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/filesystem/"
+
+bb_open(path"/file2", fi=0x18899ce0)
+    bb_fullpath:  rootdir = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/filesystem", path = "/file2", fpath = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/filesystem/file2"
+open return fd is; 10
+
+bb_read(path="/file2", buf=0x0c001de0, size=4096, offset=0, fi=0x13ffece0)
+    fi:
+    flags = 0x00008000
+    fh_old = 0x0000000a
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x000000000000000a
+    lock_owner = 0x0000000000000000
+    bb_fullpath:  rootdir = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/filesystem", path = "/file2", fpath = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/filesystem/file2"
+    pread returned 10
+
+bb_fgetattr(path="/file2", statbuf=0x18899c00, fi=0x18899ce0)
     fi:
     flags = 0x00000000
-    fh_old = 0x7f13b0009530
+    fh_old = 0x0000000a
     writepage = 0
     direct_io = 0
     keep_cache = 0
-    fh = 0x00007f13b0009530
+    fh = 0x000000000000000a
     lock_owner = 0x0000000000000000
-comes in bb_getattr jump!
+    bb_fullpath:  rootdir = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/filesystem", path = "/file2", fpath = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/filesystem/file2"
 
-bb_getxattr(path = "/buddy.txt", name = "security.selinux", value = 0xb8000bf0, size = 255)
+bb_getattr(path="/file2", statbuf=0x18899c30)
+    bb_fullpath:  rootdir = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/filesystem", path = "/file2", fpath = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/filesystem/file2"
 
-bb_getxattr(path = "/buddy.txt", name = "system.posix_acl_access", value = 0x00000000, size = 0)
+bb_open(path"/file2", fi=0x13ffece0)
+    bb_fullpath:  rootdir = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/filesystem", path = "/file2", fpath = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/filesystem/file2"
+open return fd is; 11
 
-bb_releasedir(path="/", fi=0xbfffec30)
+bb_getxattr(path = "/file2", name = "security.capability", value = 0x00000000, size = 0)
+    bb_fullpath:  rootdir = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/filesystem", path = "/file2", fpath = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/filesystem/file2"
+
+bb_truncate(path="/file2", newsize=0)
+    bb_fullpath:  rootdir = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/filesystem", path = "/file2", fpath = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/filesystem/file2"
+
+bb_getattr(path="/file2", statbuf=0x13ffeb60)
+    bb_fullpath:  rootdir = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/filesystem", path = "/file2", fpath = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/filesystem/file2"
+
+bb_getxattr(path = "/file2", name = "security.capability", value = 0x00000000, size = 0)
+    bb_fullpath:  rootdir = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/filesystem", path = "/file2", fpath = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/filesystem/file2"
+    bb_fullpath:  rootdir = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/filesystem", path = "/file2", fpath = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/filesystem/file2"
+fd inside bb_write is 11
+
+bb_write(path="/file2", buf=0x194c3060, size=29, offset=0, fi=0x13ffed50)
+    fi:
+    flags = 0x00008001
+    fh_old = 0x0000000b
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x000000000000000b
+    lock_owner = 0x0000000000000000
+someone wants to write in file1 !
+
+bb_opendir(path="/", fi=0x13ffec20)
+    bb_fullpath:  rootdir = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/filesystem", path = "/", fpath = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/filesystem/"
+
+bb_getattr(path="/", statbuf=0x18899c00)
+    bb_fullpath:  rootdir = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/filesystem", path = "/", fpath = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/filesystem/"
+
+bb_readdir(path="/", buf=0x0c001ea0, filler=0x190b6d00, offset=0, fi=0x13ffec20)
+    bb_fullpath:  rootdir = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/filesystem", path = "/", fpath = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/filesystem/"
+
+bb_getattr(path="/file1", statbuf=0x18899c30)
+    bb_fullpath:  rootdir = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/filesystem", path = "/file1", fpath = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/filesystem/file1"
+
+bb_getattr(path="/file2", statbuf=0x18899c30)
+    bb_fullpath:  rootdir = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/filesystem", path = "/file2", fpath = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/filesystem/file2"
+
+bb_opendir(path="/", fi=0x13ffec20)
+    bb_fullpath:  rootdir = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/filesystem", path = "/", fpath = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/filesystem/"
+
+bb_getattr(path="/", statbuf=0x18899c00)
+    bb_fullpath:  rootdir = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/filesystem", path = "/", fpath = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/filesystem/"
+
+bb_readdir(path="/", buf=0x0c001f20, filler=0x190b6d00, offset=0, fi=0x13ffec20)
+    bb_fullpath:  rootdir = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/filesystem", path = "/", fpath = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/filesystem/"
+
+bb_open(path"/file2", fi=0x18899ce0)
+    bb_fullpath:  rootdir = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/filesystem", path = "/file2", fpath = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/filesystem/file2"
+open return fd is; 12
+
+bb_read(path="/file2", buf=0x0c002400, size=4096, offset=0, fi=0x13ffece0)
+    fi:
+    flags = 0x00008000
+    fh_old = 0x0000000c
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x000000000000000c
+    lock_owner = 0x0000000000000000
+    bb_fullpath:  rootdir = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/filesystem", path = "/file2", fpath = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/filesystem/file2"
+    pread returned 10
+
+bb_fgetattr(path="/file2", statbuf=0x18899c00, fi=0x18899ce0)
     fi:
     flags = 0x00000000
-    fh_old = 0x7f13b0009530
+    fh_old = 0x0000000c
     writepage = 0
     direct_io = 0
     keep_cache = 0
-    fh = 0x00007f13b0009530
+    fh = 0x000000000000000c
     lock_owner = 0x0000000000000000
-
-bb_getattr(path="/", statbuf=0xc4c53c00)
-    bb_fullpath:  rootdir = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/testdir", path = "/", fpath = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/testdir/"
-    lstat returned 0
-    si:
-    st_dev = 64770
-    st_ino = 4200288
-    st_mode = 040775
-    st_nlink = 2
-    st_uid = 1187498
-    st_gid = 1002
-    st_rdev = 0
-    st_size = 24
-    st_blksize = 4096
-    st_blocks = 0
-    st_atime = 0x5d75bc7e
-    st_mtime = 0x5d75bc7d
-    st_ctime = 0x5d75bc7d
-
-bb_destroy(userdata=0x4de0e260)
+    bb_fullpath:  rootdir = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/filesystem", path = "/file2", fpath = "/home/hw210/566ece/fuse-tutorial-2018-02-04/example/filesystem/file2"
