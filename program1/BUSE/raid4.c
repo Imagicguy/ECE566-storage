@@ -35,11 +35,11 @@ int block_size;  //NOTE: other than truncating the resulting raid device, block_
 uint64_t raid_device_size; // size of raid device in bytes
 bool verbose = false;  // set to true by -v option for debug output
 bool degraded = false; // true if we're missing a device
-int missing_dev = -1;//
+int missing_dev = 0;// num of missing device
 int dev_num = 0;// include parity drive
 int ok_dev = -1; // index of dev_fd that has a valid drive (used in degraded mode to identify the non-missing drive (0 or 1))
 int rebuild_dev = -1; // index of drive that is being added with '+' for RAID rebuilt
-
+int missing_dev_fd = -1;
 int last_read_dev = 0; // used to interleave reading between the two devices
 
 static int xmp_read(void *buf, u_int32_t len, u_int64_t offset, void *userdata) {
@@ -104,12 +104,16 @@ static int xmp_read(void *buf, u_int32_t len, u_int64_t offset, void *userdata) 
     fprintf(stderr, "xmp_write: len %d offset %ld. \n", len, offset);
     while (len > 0) {
       currentDev  = 1 + (offset % ((dev_num - 1) * block_size)) / block_size;
-     
+      
       diskOffset = ((offset / block_size) / (dev_num - 1)) * block_size + (offset % block_size);
       char old_block[block_size];// store old value of changing block for parity re-calculation
-      if (pread(dev_fd[currentDev],old_block,block_size,diskOffset) != block_size) {
-	perror("xmp_write(degraded) short read");
-      }
+      int r;
+      r = pread(dev_fd[currentDev],old_block,block_size,diskOffset);
+      /*
+      if (r != block_size) {
+	fprintf(stderr,"xmp_write(degraded) short read, block_size %d, read size %d ",block_size,r);
+	}
+      */
       char parity_block[block_size];
       if (pread(dev_fd[0],old_block,block_size,diskOffset) != block_size){
 	perror("xmp_write(degraded) short parity read");
@@ -124,6 +128,9 @@ static int xmp_read(void *buf, u_int32_t len, u_int64_t offset, void *userdata) 
       }
       
       if (dev_fd[currentDev] == -1) {//means this drive is missing
+	len -= block_size;
+	buf += block_size;
+	offset += block_size;
 	continue;
       }
       
@@ -387,11 +394,15 @@ int main(int argc, char *argv[]) {
       char* dev_path = arguments.device[i];
       fprintf(stderr,"device %d name is : %s\n",i,dev_path);       
       if (dev_path  == 0) {
-	fprintf(stderr,"device %d doesn't exist\n",i);
 	continue;// which means this device does not exist
       }
       if (strcmp(dev_path,"MISSING")==0) {
+	if (i == 0){
+	  fprintf(stderr, "ERROR: first device can not be missing, it is parity device\n");
+	  exit(1);
+	}
 	missing_dev++;
+	missing_dev_fd = i;
 	degraded = true;
 	dev_fd[i] = -1;//set to -1 when this device is missing.
 	fprintf(stderr, "DEGRADED: Device number %d is missing!\n", i);
@@ -402,6 +413,7 @@ int main(int argc, char *argv[]) {
 	    fprintf(stderr, "ERROR: Multiple '+' drives specified. Can only recover one drive at a time.\n");
 	    exit(1);
 	  }
+	  
 	  dev_path++; // shave off the '+' for the subsequent logic
 	  rebuild_dev = i;
 	  rebuild_needed = true;
@@ -427,7 +439,7 @@ int main(int argc, char *argv[]) {
 	fprintf(stderr,"ERROR: missed device number > 1. Can't rebuild anymore.\n");
 	exit(1);
       }
-      if (degraded) {
+      if (degraded && missing_dev_fd != rebuild_dev) {
 	fprintf(stderr, "ERROR: Can't rebuild when a device is missing(i.e., you can't combine MISSING and '+').\n");
 	exit(1);
       }

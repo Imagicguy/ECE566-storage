@@ -1,4 +1,0 @@
-rm img* ;
-for D in img0 img1 img2 img3 ;
-do dd if=/dev/zero of=$D bs=3M count=1 ;
-done
