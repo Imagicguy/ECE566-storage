@@ -47,7 +47,7 @@ static int xmp_read(void *buf, u_int32_t len, u_int64_t offset, void *userdata) 
     while (len > 0) {
       currentDevFd  = ((int)offset % (2 * block_size) >= block_size)? dev_fd[1]:dev_fd[0];
       diskOffset = ((offset / block_size) / 2) * block_size + (offset % block_size);
-      if (pread(currentDevFd,buf, len, diskOffset) == -1) {
+      if (pread(currentDevFd,buf, block_size, diskOffset) == -1) {
 	perror("xmp_read error: return value -1\n");
       }else {
 	len -= block_size;
@@ -70,7 +70,7 @@ static int xmp_write(const void *buf, u_int32_t len, u_int64_t offset, void *use
     while (len > 0) {
       currentDevFd  = ((int)offset % (2 * block_size) >= block_size)? dev_fd[1]:dev_fd[0];
       diskOffset = ((offset / block_size) / 2) * block_size + (offset % block_size);
-      if (pwrite(currentDevFd,buf, len, diskOffset) == -1) {
+      if (pwrite(currentDevFd,buf, block_size, diskOffset) == -1) {
 	perror("xmp_write error: return value -1\n");
       }else {
 	len -= block_size;

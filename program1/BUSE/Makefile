@@ -1,4 +1,4 @@
-TARGET		:= busexmp loopback raid1 raid0
+TARGET		:= busexmp loopback raid1 raid0 raid4
 LIBOBJS 	:= buse.o
 OBJS		:= $(TARGET:=.o) $(LIBOBJS)
 STATIC_LIB	:= libbuse.a

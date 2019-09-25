@@ -43,74 +43,99 @@ int rebuild_dev = -1; // index of drive that is being added with '+' for RAID re
 int last_read_dev = 0; // used to interleave reading between the two devices
 
 static int xmp_read(void *buf, u_int32_t len, u_int64_t offset, void *userdata) {
-    UNUSED(userdata);
-    if (verbose)
-        fprintf(stderr, "R - %lu, %u\n", offset, len);
-    
-    if (degraded) {
-        // for the missing drive, retrive data from parity calculation 
-      int currentDev;
-      int diskOffset;
-      while (len > 0) {
-	//add 1 to ensure parity drive would not be effected
-	currentDev  = 1 + (offset % ((dev_num - 1) * block_size)) / block_size;
-	if(dev_fd[currentDev] == -1) {
-	  //retrive data from parity calculation
-	}
-	diskOffset = ((offset / block_size) / (dev_num - 1)) * block_size + (offset % block_size);
-	if (pread(dev_fd[currentDev,buf],buf, len, diskOffset) == -1) {
-	  perror("xmp_read error: return value -1\n");
-	}else {
-	  len -= block_size;
-	  buf += block_size;
-	  offset += block_size;
-	}
-      }
-    } else {
-        // regular read, slip parity drive
-      int currentDev;
-      int diskOffset;
-      while (len > 0) {
-	//add 1 to ensure parity drive would not be effected
-	currentDev  = 1 + (offset % ((dev_num - 1) * block_size)) / block_size;
-	diskOffset = ((offset / block_size) / (dev_num - 1)) * block_size + (offset % block_size);
-	if (pread(dev_fd[currentDev,buf], buf,block_size, diskOffset) == -1) {
-	  perror("xmp_read error: return value -1\n");
-	}else {
-	  len -= block_size;
-	  buf += block_size;
-	  offset += block_size;
-	}
-      }
-    }
-    return 0;
-}
+  UNUSED(userdata);
+  if (verbose)
+    fprintf(stderr, "R - %lu, %u\n", offset, len);
+  
+  // for the missing drive, retrive data from parity calculation 
+  int currentDev;
+  int diskOffset;
+  while (len > 0) {
+    //add 1 to ensure parity drive would not be effected
+    currentDev  = 1 + (offset % ((dev_num - 1) * block_size)) / block_size;
+    diskOffset = ((offset / block_size) / (dev_num - 1)) * block_size + (offset % block_size);
 
-static int xmp_write(const void *buf, u_int32_t len, u_int64_t offset, void *userdata) {
-    UNUSED(userdata);
-    if (verbose)
-        fprintf(stderr, "W - %lu, %u\n", offset, len);
-    
-    if (degraded) {
-        // write to surviving drive
-      pwrite(dev_fd[ok_dev], buf, len, offset); // write to ok drive only
-    } else {
-      // write to both drives
-      int currentDevFd;
-      int diskOffset;
-      fprintf(stderr, "xmp_write: len %d offset %ld. \n", len, offset);
-      while (len > 0) {
-	currentDev  = 1 + (offset % ((dev_num - 1) * block_size)) / block_size;
-	diskOffset = ((offset / block_size) / (dev_num - 1)) * block_size + (offset % block_size);
-	if (pwrite(currentDevFd,buf, block_size, diskOffset) == -1) {
-	  perror("xmp_write error: return value -1\n");
-	}else {
-	  len -= block_size;
-	  buf += block_size;
-	  offset += block_size;
+    if(dev_fd[currentDev] == -1) {
+      //retrive data from parity calculation
+      char xor[block_size];
+      char tmp[block_size];
+      int r;
+      for (int i = 0;i < dev_num;i++) {
+	if (i == currentDev) {
+	  continue;
+	}
+	r = pread(dev_fd[i],tmp,block_size,diskOffset);
+	if (r<0) {
+	  perror("xmp_read(degraded)");
+	  return -1;
+	} else if (r != block_size) {
+	  fprintf(stderr, "xmp_read(degraded) short read \n");
+	  return 1;
+	}
+	for (int j = 0;j < block_size;j++) {
+	  xor[j] = (char) (xor[j] ^ tmp[j]);
 	}
       }
+      memcpy(buf,xor,block_size);
+      len -= block_size;
+      buf += block_size;
+      offset += block_size;
+    } else {// no missing drive, just do regular read
+      if (pread(dev_fd[currentDev],buf, block_size, diskOffset) == -1) {
+	perror("xmp_read error: return value -1\n");
+      }else {
+	len -= block_size;
+	buf += block_size;
+	offset += block_size;
+      }
     }
+	
+   
+  }
+  return 0;
+}
+  static int xmp_write(const void *buf, u_int32_t len, u_int64_t offset, void *userdata) {
+    UNUSED(userdata);
+    if (verbose)
+      fprintf(stderr, "W - %lu, %u\n", offset, len);
+    // write to both drives
+    int currentDev;
+    int diskOffset;
+    fprintf(stderr, "xmp_write: len %d offset %ld. \n", len, offset);
+    while (len > 0) {
+      currentDev  = 1 + (offset % ((dev_num - 1) * block_size)) / block_size;
+     
+      diskOffset = ((offset / block_size) / (dev_num - 1)) * block_size + (offset % block_size);
+      char old_block[block_size];// store old value of changing block for parity re-calculation
+      if (pread(dev_fd[currentDev],old_block,block_size,diskOffset) != block_size) {
+	perror("xmp_write(degraded) short read");
+      }
+      char parity_block[block_size];
+      if (pread(dev_fd[0],old_block,block_size,diskOffset) != block_size){
+	perror("xmp_write(degraded) short parity read");
+      }
+      char new_block[block_size];
+      memcpy(new_block,buf,block_size);
+      for (int i = 0; i < block_size;i++) {
+	parity_block[i] ^= old_block[i] ^ new_block[i];
+      }
+      if (pwrite(dev_fd[0],parity_block, block_size, diskOffset) == -1) {
+	perror("xmp_write error: parity write return value -1\n");
+      }
+      
+      if (dev_fd[currentDev] == -1) {//means this drive is missing
+	continue;
+      }
+      
+      if (pwrite(dev_fd[currentDev],buf, block_size, diskOffset) == -1) {
+	perror("xmp_write error: return value -1\n");
+      }else {
+	len -= block_size;
+	buf += block_size;
+	offset += block_size;
+      }
+    }
+    
     return 0;
 }
 
@@ -310,7 +335,7 @@ static int do_raid_rebuild() {
       if (i == rebuild_dev) {
 	continue;
       }
-      r = read(dev_fd[source_dev],buf,block_size);
+      r = read(dev_fd[i],buf,block_size);
       if (r<0) {
 	perror("rebuild_read");
 	return -1;
@@ -339,7 +364,7 @@ static int do_raid_rebuild() {
 int main(int argc, char *argv[]) {
     struct arguments arguments = {
         .verbose = 0,
-	.device = "";
+	.device = "",
     };
     argp_parse(&argp, argc, argv, 0, 0, &arguments);
     
@@ -357,12 +382,14 @@ int main(int argc, char *argv[]) {
     raid_device_size=0; // will be detected from the drives available
     ok_dev=-1;
     bool rebuild_needed = false; // will be set to true if a drive is MISSING
+    fprintf(stderr,"Device number is %d!\n",dev_num);
     for (int i=0; i< 16; i++) {
       char* dev_path = arguments.device[i];
-      if (strcmp(dev_path,"") == 0) {
+      fprintf(stderr,"device %d name is : %s\n",i,dev_path);       
+      if (dev_path  == 0) {
+	fprintf(stderr,"device %d doesn't exist\n",i);
 	continue;// which means this device does not exist
       }
-      
       if (strcmp(dev_path,"MISSING")==0) {
 	missing_dev++;
 	degraded = true;
@@ -379,7 +406,7 @@ int main(int argc, char *argv[]) {
 	  rebuild_dev = i;
 	  rebuild_needed = true;
 	}
-	ok_dev = i;//delete this ***
+
 	dev_fd[i] = open(dev_path,O_RDWR);
 	if (dev_fd[i] < 0) {
 	  perror(dev_path);
