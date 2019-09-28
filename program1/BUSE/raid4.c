@@ -101,27 +101,45 @@ static int xmp_read(void *buf, u_int32_t len, u_int64_t offset, void *userdata) 
     // write to both drives
     int currentDev;
     int diskOffset;
+    int r;
+    char old_block[block_size];// store old value of changing block for parity re-calculation
+    char parity_block[block_size];
+    char new_block[block_size];
+    memset(old_block,0,block_size);
+    memset(parity_block,0,block_size);
+    memset(new_block,0,block_size);
     fprintf(stderr, "xmp_write: len %d offset %ld. \n", len, offset);
     while (len > 0) {
       currentDev  = 1 + (offset % ((dev_num - 1) * block_size)) / block_size;
-      
       diskOffset = ((offset / block_size) / (dev_num - 1)) * block_size + (offset % block_size);
-      char old_block[block_size];// store old value of changing block for parity re-calculation
-      int r;
-      r = pread(dev_fd[currentDev],old_block,block_size,diskOffset);
-      /*
-      if (r != block_size) {
-	fprintf(stderr,"xmp_write(degraded) short read, block_size %d, read size %d ",block_size,r);
+
+      //      r = pread(dev_fd[currentDev],old_block,block_size,diskOffset);
+      if (dev_fd[currentDev] == -1) {
+	char xor[block_size];
+	char tmp[block_size];
+	memset(xor,0,block_size);
+	memset(tmp,0,block_size);
+	int r;
+	for (int i = 0;i < dev_num;i++) {
+	  if (i == currentDev) {
+	    continue;
+	  }
+	  r = pread(dev_fd[i],tmp,block_size,diskOffset);
+	  for (int j = 0;j < block_size;j++) {
+	    xor[j] = (char) (xor[j] ^ tmp[j]);
+	  }
 	}
-      */
-      char parity_block[block_size];
-      if (pread(dev_fd[0],old_block,block_size,diskOffset) != block_size){
+	memcpy(old_block,xor,block_size);
+      }else {
+	pread(dev_fd[currentDev],old_block, block_size, diskOffset);
+      }
+      if (pread(dev_fd[0],parity_block,block_size,diskOffset) != block_size){
 	perror("xmp_write(degraded) short parity read");
       }
-      char new_block[block_size];
+
       memcpy(new_block,buf,block_size);
       for (int i = 0; i < block_size;i++) {
-	parity_block[i] ^= old_block[i] ^ new_block[i];
+	parity_block[i] ^= (old_block[i] ^ new_block[i]);
       }
       if (pwrite(dev_fd[0],parity_block, block_size, diskOffset) == -1) {
 	perror("xmp_write error: parity write return value -1\n");
@@ -134,7 +152,7 @@ static int xmp_read(void *buf, u_int32_t len, u_int64_t offset, void *userdata) 
 	continue;
       }
       
-      if (pwrite(dev_fd[currentDev],buf, block_size, diskOffset) == -1) {
+      if (pwrite(dev_fd[currentDev],new_block, block_size, diskOffset) == -1) {
 	perror("xmp_write error: return value -1\n");
       }else {
 	len -= block_size;
@@ -202,12 +220,25 @@ static error_t parse_opt(int key, char *arg, struct argp_state *state) {
             break;
 
         case ARGP_KEY_ARG:
+	  /*
+	  if (state->arg_num == 0) {
+
+	  }else if (state->arg_num == 1){
+
+	  }else if (state->arg_num < 18) {
+	    arguments->device[state->arg_num -2] = arg;
+	    dev_num++;
+	  }else {
+	    errx(EXIT_FAILURE, "Device number must be in [3,16]!");
+	    return ARGP_ERR_UNKNOWN;
+	  } 
+	  */
             switch (state->arg_num) {
 
                 case 0:
                     arguments->block_size = strtoul(arg, &endptr, 10);
                     if (*endptr != '\0') {
-                        /* failed to parse integer */
+                     
                         errx(EXIT_FAILURE, "SIZE must be an integer");
                     }
                     break;
@@ -294,9 +325,10 @@ static error_t parse_opt(int key, char *arg, struct argp_state *state) {
                     break;
                 
                 default:
-                    /* Too many arguments. */
+                   
                     return ARGP_ERR_UNKNOWN;
             }
+
             break;
 
         case ARGP_KEY_END:
@@ -329,32 +361,43 @@ static struct argp argp = {
 
 static int do_raid_rebuild() {
     // target drive index is: rebuild_dev
-  char buf[block_size];
-
+  fprintf(stderr,"Doing rebuilding... rebuild_dev = %d\n",rebuild_dev);
   for (int i = 0;i < dev_num;i++) {
     lseek(dev_fd[i],0,SEEK_SET);//set all device offset to head of file
   }
-  
+  u_int64_t offset = 0;
   int r;
+  char buf[block_size];
+  char xor[block_size];
   for (uint64_t cursor=0; cursor<raid_device_size; cursor+=block_size) {
-    char xor[block_size];
+    //char xor[block_size];
+    memset(xor,0,sizeof(xor));
+    memset(buf,0,sizeof(buf));
     for (int i = 0;i < dev_num;i++) {
       if (i == rebuild_dev) {
 	continue;
       }
+      //      r = pread(dev_fd[i],buf,block_size,offset);
       r = read(dev_fd[i],buf,block_size);
       if (r<0) {
 	perror("rebuild_read");
 	return -1;
-      } else if (r != block_size) {
+      }
+      /*
+      else if (r != block_size) {
 	fprintf(stderr, "rebuild_read: short read (%d bytes), offset=%zu\n", r, cursor);
 	return 1;
       }
+      */
       for (int j = 0;j < block_size;j++) {
-	xor[j] = (char) (xor[j] ^ buf[j]);
+	//	xor[j] =  (xor[j] ^ buf[j]);
+	xor[j] ^=  buf[j];
       }
     }
+    //r = pwrite(dev_fd[rebuild_dev],xor,block_size,offset);
+    //fprintf(stderr,"last buf is %s\n",xor[0]);
     r = write(dev_fd[rebuild_dev],xor,block_size);
+    
     if (r<0) {
       perror("rebuild_write");
       return -1;
@@ -362,6 +405,7 @@ static int do_raid_rebuild() {
       fprintf(stderr, "rebuild_write: short write (%d bytes), offset=%zu\n", r, cursor);
       return 1;
     }
+        offset += block_size;
   }
   return 0;
 }
@@ -392,7 +436,6 @@ int main(int argc, char *argv[]) {
     fprintf(stderr,"Device number is %d!\n",dev_num);
     for (int i=0; i< 16; i++) {
       char* dev_path = arguments.device[i];
-      fprintf(stderr,"device %d name is : %s\n",i,dev_path);       
       if (dev_path  == 0) {
 	continue;// which means this device does not exist
       }
